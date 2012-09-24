@@ -1,3 +1,7 @@
+New in 5.2.3:
+
+ * migrated source repository from cvs to git
+ 
 New in 5.2.2:
 
  * patches for a smooth Gentoo ebuild by Michael

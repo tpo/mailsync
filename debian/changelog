@@ -8,6 +8,7 @@ mailsync (5.2.2-1.1) unstable; urgency=low
         additional directory to search for libssl.
       - add missing build dependencies: libssl-dev, libpam0g-dev, libkrb5-dev.
     (Closes: #642689)
+  * Additionally build depend on dpkg-dev >= 1.16.0.
 
  -- gregor herrmann <gregoa@debian.org>  Sat, 12 Nov 2011 15:57:57 +0100
 

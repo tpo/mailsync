@@ -1,6 +1,17 @@
 mailsync (5.2.2-3) unstable; urgency=high
 
+  * set urgency=high because libc-client broke mailsync and the
+    mailsync currently in wheezy and to be released will not even
+    start. See next changelog entry and also #682256 and #686393 
+  * debian/control: rebuild against and depend on libc-client2007e
+    (>= 8:2007f~dfsg-1) since c-client broke its own library
+    version checks. Thanks Fredrik Jonson (Closes: #685897)
   * debian/copyright: made machine readable
+  * debian/compat: added
+  * debian/control: added
+  * a question to my 23 users (according to popcon): is it worth
+    to maintain this package? Wouldn't it maybe be wiser to migrate
+    to offlineimap? If you care about this package then please let me know.
 
  -- Tomas Pospisek <tpo_deb@sourcepole.ch>  Tue, 04 Sep 2012 21:50:01 +0200
 

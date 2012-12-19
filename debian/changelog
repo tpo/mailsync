@@ -6,6 +6,8 @@ mailsync (5.2.2-1.1) unstable; urgency=low
     * Fix FTBFS:
       - debian/rules, acinclude/ac_with_openssl.m4, configure: provide an
         additional directory to search for libssl.
+      - add missing build dependencies: libssl-dev, libpam0g-dev, libkrb5-dev.
+    (Closes: #642689)
 
  -- gregor herrmann <gregoa@debian.org>  Sat, 12 Nov 2011 15:57:57 +0100
 

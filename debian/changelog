@@ -1,6 +1,8 @@
 mailsync (5.2.2-2) unstable; urgency=low
 
   * thanks a lot to Gregor Herrmann and Ilya Barygin for the previous NMU
+  * debian/control: migrate from automake1.7 to automake1.11 (Closes: #648586)
+    * thanks to Eric Dorland for pointing out the way forward
   * debian/control: bump Standards-Version to 3.8.4.0
     * doc/examples/mailsync: s#/var/spool/mail#/var/mail#
   * debian/rules: bump DH_COMPAT to 7 

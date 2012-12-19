@@ -8,6 +8,9 @@ Bob Lindell             first md5 checksumms patch, testing
 Heiko Rommel @ SuSE     Linux-lib64 support, various bugfixes
 Akkana Peck             build bugfix
 Daniel Scheppler        manpage, debian build, dependencies fixes
+Gregor Herrmann         debian NMU
+Ilya Barygin            build fixes
+Eric Dorland            automake migration advice
 
 Good bugreports that helped fix problems or help on the mail list
 -----------------------------------------------------------------

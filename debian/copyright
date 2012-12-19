@@ -1,30 +1,46 @@
-This package was debianized by Jaldhar H. Vyas <jaldhar@debian.org> on
-Mon,  2 Apr 2001 13:26:55 -0400 and has been maintained by Tomas Pospisek
-<tpo_deb@sourcepole.ch> since then.
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Source: http://sourceforge.net/projects/mailsync/
+Comment: This package was originally debianized by
+         Jaldhar H. Vyas <jaldhar@debian.org> on 2001-04-02 and has been
+         maintained by Tomas Pospisek <tpo_deb@sourcepole.ch> since then.
+         Mailsync's original author is Tim Culver <fullcity@sourceforge.net>.
 
-It was downloaded from http://sourceforge.net/projects/mailsync/
+Files: *
+Copyright: 2000-2002 Tim Culver <fullcity@sourceforge.net>
+           2002-2012 Tomáš Pospíšek <tpo_deb@sourcepole.ch>
+Comment: Tim is mailsync's original author.
+         Tomáš has been maintaining it since 2002.
+License: GPL-2+ with OpenSSL exception
+ This program is free software; you can redistribute it
+ and/or modify it under the terms of the GNU General Public
+ License as published by the Free Software Foundation; either
+ version 2 of the License, or (at your option) any later
+ version.
+ .
+ In addition, as a special exception, the author of this
+ program gives permission to link the code of its
+ release with the OpenSSL project's "OpenSSL" library (or
+ with modified versions of it that use the same license as
+ the "OpenSSL" library), and distribute the linked
+ executables. You must obey the GNU General Public
+ License in all respects for all of the code used other
+ than "OpenSSL".  If you modify this file, you may extend
+ this exception to your version of the file, but you are
+ not obligated to do so.  If you do not wish to do so,
+ delete this exception statement from your version.
+ .
+ This program is distributed in the hope that it will be
+ useful, but WITHOUT ANY WARRANTY; without even the implied
+ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+ PURPOSE.  See the GNU General Public License for more
+ details.
+ .
+ You should have received a copy of the GNU General Public
+ License along with this package; if not, write to the Free
+ Software Foundation, Inc., 51 Franklin St, Fifth Floor,
+ Boston, MA  02110-1301 USA
+ .
+ On Debian systems, the full text of the GNU General Public
+ License version 2 can be found in the file
+ `/usr/share/common-licenses/GPL-2'.
 
-Upstream Author: Tim Culver <fullcity@sourceforge.net>
-
----------------
-
-Copyright:
-
-mailsync is free software; you can redistribute it and/or modify it
-under the terms of the GNU General Public License as published by the Free
-Software Foundation; either version 2, or (at your option) any later
-version.
- 
-This is distributed in the hope that it will be useful, but WITHOUT ANY
-WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
-details.
- 
-You should have received a copy of the GNU General Public License with
-your Debian GNU/Linux system, in /usr/share/common-licenses/GPL.  If not,
-write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-Boston, MA 02111-1307, USA.
-
----------------
-
-Linking with OpenSSL is fine (confirmed by both upstream authors Tim and myself)

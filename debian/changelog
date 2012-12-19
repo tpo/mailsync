@@ -1,3 +1,9 @@
+mailsync (5.2.2-3) unstable; urgency=high
+
+  * debian/copyright: made machine readable
+
+ -- Tomas Pospisek <tpo_deb@sourcepole.ch>  Tue, 04 Sep 2012 21:50:01 +0200
+
 mailsync (5.2.2-2) unstable; urgency=low
 
   * thanks a lot to Gregor Herrmann and Ilya Barygin for the previous NMU

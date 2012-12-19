@@ -1,3 +1,10 @@
+mailsync (5.2.2-1) unstable; urgency=low
+
+  * remove build-dependency on automake1.6, since it's been removed from the
+    archive (thanks Martin Michlmayr)                       closes: 355317
+
+ -- Tomas Pospisek <tpo_deb@sourcepole.ch>  Sun, 05 Mar 2006 20:36:54 +0100
+
 mailsync (5.2.1-2) unstable; urgency=low
 
   * debian:

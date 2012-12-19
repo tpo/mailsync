@@ -1,3 +1,11 @@
+mailsync (5.2.2-2) unstable; urgency=low
+
+  * thanks a lot to Gregor Herrmann and Ilya Barygin for the previous NMU
+  * debian/rules: bump DH_COMPAT to 7 
+    * debian/control: add ${misc:Depends} to "Depends:" field
+
+ -- Tomas Pospisek <tpo_deb@sourcepole.ch>  Sun, 15 Jan 2012 13:48:23 +0100
+
 mailsync (5.2.2-1.1) unstable; urgency=low
 
   * Non-maintainer upload.

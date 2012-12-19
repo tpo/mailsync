@@ -101,12 +101,21 @@ store cyrus-inbox {
 #
 # courier INBOX over IMAP only
 #
-# do not verify any certs either
-#
 store courier-inbox {
 	server	{example.org/user=tpo/imap/norsh}
 	ref	{example.org}
 	pat	INBOX
+}
+
+#
+# all IMAP folders on courier INBOX over IMAP only
+#
+# (thanks to Holger Krull)
+#
+store courier-inbox-2 {
+	server	{example.org/user=tpo/imap/norsh}
+	ref	{example.org}
+	pat	*
 }
 
 #

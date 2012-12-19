@@ -1,6 +1,8 @@
 mailsync (5.2.2-2) unstable; urgency=low
 
   * thanks a lot to Gregor Herrmann and Ilya Barygin for the previous NMU
+  * debian/control: bump Standards-Version to 3.8.4.0
+    * doc/examples/mailsync: s#/var/spool/mail#/var/mail#
   * debian/rules: bump DH_COMPAT to 7 
     * debian/control: add ${misc:Depends} to "Depends:" field
   * debian/control: add "Homepage:" field

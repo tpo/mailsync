@@ -187,7 +187,7 @@ store local-directory-mail {
 
 #
 # local mail in the INBOX
-# that can be /var/spool/mail/USERNAME or in other
+# that can be /var/mail/USERNAME or in other
 # standard inbox places
 #
 store local-inbox {

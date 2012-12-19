@@ -3,7 +3,7 @@ Section: mail
 Priority: optional
 Maintainer: Tomas Pospisek <tpo_deb@sourcepole.ch>
 Build-Depends: debhelper (>> 3.0.0), libc-client-dev | libc-client-ssl2001-dev, libc-client-dev | libkrb5-dev, automake1.7, dpkg-dev (>= 1.16.0)
-Standards-Version: 3.5.2
+Standards-Version: 3.8.4.0
 Homepage: http://mailsync.sourceforge.net/
 
 Package: mailsync

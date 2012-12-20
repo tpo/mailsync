@@ -63,7 +63,7 @@ int main(int argc, char** argv)
   Store& store_a = channel.store_a;
   Store& store_b = channel.store_b;
   MsgIdsPerMailbox lasttime, thistime;
-  MailboxMap deleted_mailboxes;   // present lasttime, but not this time
+  MailboxMap deleted_mailboxes;   // present last time, but not this time
   MailboxMap empty_mailboxes;
   int success;
   bool& debug = options.debug;
@@ -156,6 +156,7 @@ int main(int argc, char** argv)
         if( curr_mbox->second.no_select )
           printf("  not selectable\n");
         else {
+          // TODO: shouldn't this be OP_READONLY
           store_a.stream = store_a.mailbox_open( curr_mbox->first, 0);
           if (! store_a.stream) break;
           if (! store_a.list_contents() )
@@ -557,11 +558,13 @@ int main(int argc, char** argv)
 
     thistime[curr_mbox->first] = msgids_now;
 
-    // close local boxes
-    if (!store_a.isremote)
-      store_a.stream = mail_close(store_a.stream);
-    if (store_b.stream && !store_b.isremote)
-      store_b.stream = mail_close(store_b.stream);
+// TODO: why do we want to close the boxes?
+// instead of expunging emails we could also use mail_open(OP_EXPUNGE) instead...
+//    // close local boxes
+//    if (!store_a.isremote)
+//      store_a.stream = mail_close(store_a.stream);
+//    if (store_b.stream && !store_b.isremote)
+//      store_b.stream = mail_close(store_b.stream);
 
   } // end loop over all mailboxes
 

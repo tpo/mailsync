@@ -59,8 +59,9 @@ void mm_list ( MAILSTREAM *stream, int delimiter, char *name_nc,
 
   if ( attributes & LATT_NOINFERIORS )
     mailbox_properties.no_inferiors = true;
-  if ( attributes & LATT_NOSELECT )
-    mailbox_properties.no_select = true;
+
+  if ( attributes & LATT_NOSELECT    )
+    mailbox_properties.no_select    = true;
   
   if (!match_pattern_store) {
     fprintf(stderr, "Error: match_pattern_store is NULL?!");

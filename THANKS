@@ -11,6 +11,7 @@ Daniel Scheppler        manpage, debian build, dependencies fixes
 Gregor Herrmann         debian NMU
 Ilya Barygin            build fixes
 Eric Dorland            automake migration advice
+Peter Breuer            fix mailbox prefix matching
 
 Good bugreports that helped fix problems or help on the mail list
 -----------------------------------------------------------------

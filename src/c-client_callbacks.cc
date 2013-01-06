@@ -74,17 +74,23 @@ void mm_list ( MAILSTREAM *stream, int delimiter, char *name_nc,
 
   if ( *name) { // TODO: is this correct?
     const char *skip;
+    const char *name_without_server_spec;
 
     // Skip over server spec, if present
     skip = strchr(name,'}');
     if (skip)
       name = skip+1;
+    // remember the name without the "{server_spec}" string
+    name_without_server_spec = name;
 
     // Remove prefix if it matches specified prefix
     skip = match_pattern_store->prefix.c_str();
     while (*skip && *skip==*name) {
       skip++;
       name++;
+    }
+    if (*skip) {                       // if the name didn't match the whole
+      name = name_without_server_spec; // prefix then revert it back to before
     }
 
     // Make sure that name doesn't contain default delimiter and replace

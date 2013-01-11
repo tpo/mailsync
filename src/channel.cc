@@ -83,6 +83,7 @@ bool Channel::read_seen_last_time( MsgIdsPerMailbox&  mids_per_box,
     mail_create( NULL, nccs( this->msinfo )); // if one exists no problem
     options.log_error = tmp_log_error;
   }
+
   if (! (msinfo_stream = mail_open( NULL, nccs( this->msinfo ), OP_READONLY)))
   {
     fprintf( stderr, "Error: Couldn't open msinfo box %s.\n",
@@ -91,11 +92,11 @@ bool Channel::read_seen_last_time( MsgIdsPerMailbox&  mids_per_box,
     return 0;
   }
 
-  for ( msgno=1; msgno<=msinfo_stream->nmsgs; msgno++ ) {
   // msinfo contains one email per channel with the 'Subject:' header set
   // to the name of the channel. The email contains a sequence of mailbox
   // names each followed by a list of msg-id's that mailsync has seen in
   // that mailbox.
+  for ( msgno = 1; msgno <= msinfo_stream->nmsgs; msgno++ ) {
     envelope = mail_fetchenvelope( msinfo_stream, msgno );
     if (! envelope) {
       fprintf( stderr,

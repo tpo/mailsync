@@ -43,7 +43,7 @@ bool Channel::read_seen_last_time( MsgIdsPerMailbox& mids_per_box,
 //
 // "deleted_mailboxes" contains mailboxes that were seen at the last sync but
 // were not included in the set of current mailboxes in store_a and store_b
-// this time
+// this time.
 //
 // If msinfo doesn't exist yet, it will be created.
 //

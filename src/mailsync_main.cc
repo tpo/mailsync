@@ -618,7 +618,7 @@ int main(int argc, char** argv)
 
   if (operation_mode==mode_sync)
     if (!options.simulate)
-      channel.write_thistime_seen( deleted_mailboxes, thistime);
+      channel.write_seen_this_time( deleted_mailboxes, thistime);
 
   return 0;
 }

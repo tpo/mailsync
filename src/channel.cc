@@ -353,8 +353,8 @@ bool Channel::copy_message( unsigned long msgno,
 
 //////////////////////////////////////////////////////////////////////////
 //
-bool Channel::write_thistime_seen( const MailboxMap& deleted_mailboxes,
-                                         MsgIdsPerMailbox& thistime)
+bool Channel::write_seen_this_time( const MailboxMap&        deleted_mailboxes,
+                                          MsgIdsPerMailbox&  thistime)
 //
 // Save in channel.msinfo all mailboxes with all msgids (found in
 // "thistime") they contain.

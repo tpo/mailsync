@@ -24,10 +24,10 @@ class Channel
     void set_passwd    (      string  password) {  passwd.set_passwd(password);                }
     void set_sizelimit (const string& sizelim)  {  sizelimit=strtoul(sizelim.c_str(),NULL,10); }
 
-    bool read_seen_last_time (       MsgIdsPerMailbox&  mids_per_box, 
-                                     MailboxMap&        deleted_mailboxes);
-    bool write_thistime_seen ( const MailboxMap&        deleted_mailboxes,
-                                     MsgIdsPerMailbox&  thistime);
+    bool read_seen_last_time  (       MsgIdsPerMailbox&  mids_per_box, 
+                                      MailboxMap&        deleted_mailboxes);
+    bool write_seen_this_time ( const MailboxMap&        deleted_mailboxes,
+                                      MsgIdsPerMailbox&  thistime);
 
     bool open_for_copying ( string             mailbox_name,
 		            enum direction_t   direction);

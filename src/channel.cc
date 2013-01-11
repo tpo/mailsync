@@ -33,8 +33,8 @@ void Channel::print(FILE* f) {
 
 //////////////////////////////////////////////////////////////////////////
 //
-bool Channel::read_lasttime_seen( MsgIdsPerMailbox& mids_per_box, 
-                                  MailboxMap& deleted_mailboxes)
+bool Channel::read_seen_last_time( MsgIdsPerMailbox& mids_per_box, 
+                                   MailboxMap& deleted_mailboxes)
 //
 // Read from msinfo all the message ids that have been seen during the last
 // synchronization of this channel and return a hash-map that contains those

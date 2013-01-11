@@ -223,7 +223,7 @@ int main(int argc, char** argv)
 
   // Read in what mailboxes and messages we've seen the last time
   // we've synchronized
-  if (! channel.read_lasttime_seen( lasttime, deleted_mailboxes) )
+  if (! channel.read_seen_last_time( lasttime, deleted_mailboxes) )
     exit(1);    // failed to read in msinfo or similar
 
 

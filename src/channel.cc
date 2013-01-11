@@ -33,8 +33,8 @@ void Channel::print(FILE* f) {
 
 //////////////////////////////////////////////////////////////////////////
 //
-bool Channel::read_seen_last_time( MsgIdsPerMailbox& mids_per_box, 
-                                   MailboxMap& deleted_mailboxes)
+bool Channel::read_seen_last_time( MsgIdsPerMailbox&  mids_per_box, 
+                                   MailboxMap&        deleted_mailboxes)
 //
 // Read from msinfo all the message ids that have been seen during the last
 // synchronization of this channel and return a hash-map that contains those
@@ -189,8 +189,8 @@ bool Channel::read_seen_last_time( MsgIdsPerMailbox& mids_per_box,
 
 //////////////////////////////////////////////////////////////////////////
 //
-bool Channel::open_for_copying( string mailbox_name,
-                                enum direction_t direction)
+bool Channel::open_for_copying( string            mailbox_name,
+                                enum direction_t  direction)
 //
 // Opens both stores in the appropriate modes for copying
 //
@@ -227,10 +227,10 @@ bool Channel::open_for_copying( string mailbox_name,
 
 //////////////////////////////////////////////////////////////////////////
 //
-bool Channel::copy_message( unsigned long msgno,
-                            const MsgId& msgid,
-                            string mailbox_name,
-                            enum direction_t direction)
+bool Channel::copy_message( unsigned long     msgno,
+                            const MsgId&      msgid,
+                            string            mailbox_name,
+                            enum direction_t  direction)
 //
 // Copies the message "msgno" with "msgid" from one store to the other
 // depending on "direction"

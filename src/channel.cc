@@ -74,7 +74,8 @@ bool Channel::read_seen_last_time( MsgIdsPerMailbox&  mids_per_box,
   if (options.debug) printf( " Reading lasttime of channel \"%s\"\n",
                              this->name.c_str());
 
-  // msinfo is the name of the mailbox that contains the sync info
+  // mailsync will be using "msinfo", a special mailbox,
+  // to save all the msg-id's that it has seen
   current_context_passwd = &this->passwd;
   {
     bool tmp_log_error = options.log_error;
@@ -91,6 +92,10 @@ bool Channel::read_seen_last_time( MsgIdsPerMailbox&  mids_per_box,
   }
 
   for ( msgno=1; msgno<=msinfo_stream->nmsgs; msgno++ ) {
+  // msinfo contains one email per channel with the 'Subject:' header set
+  // to the name of the channel. The email contains a sequence of mailbox
+  // names each followed by a list of msg-id's that mailsync has seen in
+  // that mailbox.
     envelope = mail_fetchenvelope( msinfo_stream, msgno );
     if (! envelope) {
       fprintf( stderr,

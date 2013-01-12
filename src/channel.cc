@@ -139,8 +139,9 @@ bool Channel::read_seen_last_time( MsgIdsPerMailbox&  mids_per_box,
         if ( text[k] != '<' ) {
           currentbox = &text[k];
           // if the mailbox is unknown
-          if ( store_a.boxes.find(currentbox) == store_a.boxes.end()
+          if (    store_a.boxes.find(currentbox) == store_a.boxes.end()
                && store_b.boxes.find(currentbox) == store_b.boxes.end()) {
+
             deleted_mailboxes[currentbox]; //-% creates a new MailboxProperties
           }
         }

@@ -60,7 +60,7 @@ MsgId::MsgId(ENVELOPE *envelope)
 
    case (HEADER_MSGID) :
         if ( envelope->message_id
-             && strcmp( envelope->message_id, "") != 0 
+             && strcmp( envelope->message_id, ""  ) != 0
              && strcmp( envelope->message_id, "<>") != 0 )
           *this = envelope->message_id;
         else

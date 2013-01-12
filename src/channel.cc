@@ -105,21 +105,8 @@ bool Channel::read_seen_last_time( MsgIdsPerMailbox&  mids_per_box,
       fprintf( stderr, "       Aborting!\n" );
       return 0;
     }
-    // Make sure that the mail is from mailsync 
-    if ( ! ( envelope->from && envelope->from->mailbox && envelope->subject) ) {
-      // Mail with missing headers
-      fprintf( stderr, "Info: The msinfo box %s contains a message with"
-                       " missing \"From\" or \"Subject\" header information\n",
-                       this->msinfo.c_str() );
+    if( ! has_channel_format( envelope) )
       continue;
-    }
-    if ( strncmp( envelope->from->mailbox, "mailsync", 8) ) {
-      // This is not an email describing a mailsync channel!
-      fprintf( stderr, "Info: The msinfo box %s contains the non-mailsync"
-                       "mail: \"From: %s\"\n",
-                       this->msinfo.c_str(), envelope->from->mailbox );
-      continue;
-    }
 
     // The subject line contains the name of the channel
     if ( this->name == envelope->subject ) {
@@ -192,6 +179,40 @@ bool Channel::read_seen_last_time( MsgIdsPerMailbox&  mids_per_box,
   exit( 0 );
 }
 
+
+//////////////////////////////////////////////////////////////////////////
+//
+bool Channel::has_channel_format( const ENVELOPE* envelope)
+//
+// make sure that the envelope has the format we expect.
+//
+// The msinfo special mailbox that mailsync uses to save all the
+// msg-id's that it has seen contains one email per channel.
+//
+// The 'From:' header of that email needs to contain the text 'mailsync'
+// and there has to be a 'Subject:' header (which should contain the
+// name of the channel).
+//
+//////////////////////////////////////////////////////////////////////////
+{
+  // Make sure that the mail is from mailsync 
+  if ( ! ( envelope->from && envelope->from->mailbox && envelope->subject) ) {
+    // Mail with missing headers
+    fprintf( stderr, "Info: The msinfo box %s contains a message with"
+                     " missing \"From\" or \"Subject\" header information\n",
+                     this->msinfo.c_str() );
+    return false;
+  }
+  if ( strncmp( envelope->from->mailbox, "mailsync", 8) ) {
+    // This is not an email describing a mailsync channel!
+    fprintf( stderr, "Info: The msinfo box %s contains the non-mailsync"
+                     "mail: \"From: %s\"\n",
+                     this->msinfo.c_str(), envelope->from->mailbox );
+    return false;
+  }
+
+  return true;
+}
 
 //////////////////////////////////////////////////////////////////////////
 //

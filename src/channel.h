@@ -29,12 +29,15 @@ class Channel
     bool write_seen_this_time ( const MailboxMap&        deleted_mailboxes,
                                       MsgIdsPerMailbox&  thistime);
 
-    bool open_for_copying ( string             mailbox_name,
-		            enum direction_t   direction);
-    bool copy_message     ( unsigned long      msgno,
-                            const MsgId&       msgid,
-                            string             mailbox_name,
-                            enum direction_t   direction);
+    bool open_for_copying   ( string             mailbox_name,
+		              enum direction_t   direction);
+    bool copy_message       ( unsigned long      msgno,
+                              const MsgId&       msgid,
+                              string             mailbox_name,
+                              enum direction_t   direction);
+
+  private:
+    bool has_channel_format ( const ENVELOPE* envelope);
 
   public: // attributes
     string         name;

@@ -110,7 +110,7 @@ bool Channel::read_seen_last_time( MsgIdsPerMailbox&  mids_per_box,
 
     // The subject line contains the name of the channel
     if ( this->name == envelope->subject ) {
-      // Found our lasttime
+      // we've found the channel
 
       text = mail_fetchtext_full( msinfo_stream, msgno, &textlen, FT_INTERNAL);
       if ( text )

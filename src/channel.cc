@@ -146,8 +146,9 @@ bool Channel::read_seen_last_time( MsgIdsPerMailbox&  mids_per_box,
           }
         }
         else {                             // it's a message-id
-          mids_per_box[currentbox].insert(
-                                      MsgId( &text[k] ).from_msinfo_format() );
+          string msg_id = MsgId( &text[k] ).from_msinfo_format();
+          if( msg_id != "" )  // got a valid msg_id
+            mids_per_box[currentbox].insert( msg_id );
         }
         for( ; k<textlen && text[k] ; k++); // fastforward to next string
         instring = 0;

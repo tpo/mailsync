@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string>
+#include <cstring>
 #include "msgid.h"
 #include "options.h"
 #include "c-client-header.h"
@@ -187,6 +188,7 @@ string MsgId::from_msinfo_format()
 //////////////////////////////////////////////////////////////////////////
 {
   int start;
+  const char* md5_start=">, md5: <";
 
   switch( options.msgid_type) {
 
@@ -196,11 +198,18 @@ string MsgId::from_msinfo_format()
 
 #ifdef HAVE_MD5
    case (MD5_MSGID) :
-        start = this->find(">, md5: <") + 9; // 9 == length of ">, md5: <"
-        return this->substr( start, this->find( ">", start) - start);
+        start = this->find(md5_start);
+        if( start == npos ) { // not found
+            fprintf( stderr, "Warning: line is missing a md5: %s\n", this->c_str());
+            return "";
+        }
+        else {
+            start += strlen(md5_start);
+            return this->substr( start, this->find( ">", start) - start);
+        }
         break;
 #endif // HAVE_MD5
-   
+
    default :
         assert(0);      // this should not happen
         break;

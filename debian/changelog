@@ -1,8 +1,13 @@
 mailsync (5.2.3~pre2-2) unstable; urgency=low
 
-  * THIS IS AN UNRELEASED PRE-RELEASE - see entry 5.2.3~pre2-1 below
+  * thanks a lot Scott Kitterman and Simon Elsbrock for your
+    FTBS fixes
+  * merge with internal mailsync version
+  * MiniDebConf in Vaumarcus release. Thanks a lot to
+    Didier Raboud and team for providing this oportunity!
+  * THIS IS AN UNRELEASED PRE-RELEASE
 
- -- Tomas Pospisek <tpo_deb@sourcepole.ch>  Sat, 15 Nov 2014 18:13:38 +0100
+ -- Tomas Pospisek <tpo_deb@sourcepole.ch>  Sat, 26 Oct 2019 19:29:21 +0200
 
 mailsync (5.2.2-3.1) unstable; urgency=medium
 

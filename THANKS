@@ -12,6 +12,8 @@ Gregor Herrmann         debian NMU
 Ilya Barygin            build fixes
 Eric Dorland            automake migration advice
 Peter Breuer            fix mailbox prefix matching
+Simon Elsbrock          build fix
+Scott Kitterman         include build fix
 
 Good bugreports that helped fix problems or help on the mail list
 -----------------------------------------------------------------

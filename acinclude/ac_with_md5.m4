@@ -9,7 +9,7 @@ AC_DEFUN([AC_WITH_MD5],[
   CFLAGS="${CFLAGS} ${CCLIENT_INCLUDES}"
   LIBS="${LIBS} ${CCLIENT_LIBS}"
   AC_LINK_IFELSE(
-   AC_LANG_SOURCE([
+   [AC_LANG_SOURCE([
     #include <stdio.h>
     #include "c-client.h"
     #include "linkage.h"
@@ -45,7 +45,7 @@ AC_DEFUN([AC_WITH_MD5],[
     void mm_exists(MAILSTREAM*a,unsigned long b){}
     void mm_searched(MAILSTREAM*a,unsigned long b){}
     void mm_expunged(MAILSTREAM*a,unsigned long b){}
-   ]),[
+   ])],[
     AC_MSG_RESULT([yes])
     AC_DEFINE([HAVE_MD5], [], [Does c-client include md5 support?])
    ],[

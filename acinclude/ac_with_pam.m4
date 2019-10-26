@@ -51,11 +51,11 @@ AC_DEFUN([AC_WITH_PAM],[
      CPPFLAGS="${CPPFLAGS} ${PAM_INCLUDES}"
      LIBS="${LIBS} ${PAM_LDFLAGS} -lpam"
      AC_LINK_IFELSE(
-      AC_LANG_SOURCE([
+      [AC_LANG_SOURCE([
        #include <security/pam_appl.h>
        main(int argc,char **argv) {
        }
-      ]),[
+      ])],[
        AC_MSG_RESULT([yes])
        HAVE_PAM="yes"
       ],[

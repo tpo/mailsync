@@ -1,7 +1,7 @@
 dnl AC_WITH_MD5([ACTION-IF-FOUND[,ACTION-IF-NOT-FOUND])
 dnl Output:
 dnl AC_DEFINE: HAVE_MD5
-AC_DEFUN(AC_WITH_MD5,[
+AC_DEFUN([AC_WITH_MD5],[
  AC_MSG_CHECKING([if c-client includes md5 support])
  AC_LANG_PUSH(C)
   xCFLAGS="${CFLAGS}"

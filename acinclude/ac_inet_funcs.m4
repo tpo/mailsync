@@ -1,7 +1,7 @@
 dnl AC_INET_FUNCS([ACTION-IF-FOUND[,ACTION-IF-NOT-FOUND]])
 dnl Output:
 dnl  -l* added to LIBS
-AC_DEFUN(AC_INET_FUNCS,[
+AC_DEFUN([AC_INET_FUNCS],[
  no_connect="no"
  no_gethostbyname="no"
  AC_CHECK_FUNC(connect,,[

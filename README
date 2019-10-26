@@ -38,7 +38,7 @@ come up with alternatives to a few functions like stat() and getenv().
    link it to Mailsync.  Just get c-client.h from either the latest IMAP
    distribution or from http://mailsync.sourceforge.net.
 
-If you're building mailsync from CVS you'll need an automake version later
+If you're building mailsync from git you'll need an automake version later
 than 1.6. The following should do the deal:
 
 2. ./autogen.sh
@@ -46,7 +46,7 @@ than 1.6. The following should do the deal:
 After that the build procedure is the same as building from a released
 source package:
 
-2. ./configure && make && make install
+3. ./configure && make && make install
 
 
 

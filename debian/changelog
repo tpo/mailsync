@@ -1,3 +1,9 @@
+mailsync (5.2.3~pre2-2) unstable; urgency=low
+
+  * THIS IS AN UNRELEASED PRE-RELEASE - see entry 5.2.3~pre2-1 below
+
+ -- Tomas Pospisek <tpo_deb@sourcepole.ch>  Sat, 15 Nov 2014 18:13:38 +0100
+
 mailsync (5.2.2-3.1) unstable; urgency=medium
 
   * Non-maintainer upload.

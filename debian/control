@@ -4,7 +4,8 @@ Priority: optional
 Maintainer: Tomas Pospisek <tpo_deb@sourcepole.ch>
 # see #685897
 #Build-Depends: debhelper (>> 3.0.0), libc-client-dev | libc-client-ssl2001-dev, libc-client-dev | libkrb5-dev, automake1.11, dpkg-dev (>= 1.16.0)
-Build-Depends: debhelper (>> 3.0.0), libc-client2007e-dev (>= 8:2007f~dfsg-1), automake1.11, dpkg-dev (>= 1.16.0)
+# libkrb5-dev see #768736
+Build-Depends: debhelper (>> 3.0.0), libc-client2007e-dev (>= 8:2007f~dfsg-1), automake1.11, dpkg-dev (>= 1.16.0), libkrb5-dev
 Standards-Version: 3.9.3.1
 Homepage: http://mailsync.sourceforge.net/
 
@@ -12,6 +13,6 @@ Package: mailsync
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, libc-client2007e (>= 8:2007f~dfsg-1)
 Description: Synchronize IMAP mailboxes
- Mailsync is a way of keeping a collection of mailboxes synchronized. The
+ Mailsync is a tool for synchronizing a collection of mailboxes. The
  mailboxes may be on the local filesystem or on an IMAP server.
 

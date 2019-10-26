@@ -20,21 +20,21 @@
 extern options_t options;
 
 #ifdef HAVE_MD5
- #define MD5BLKLEN 64           /* MD5 block length */
- #define MD5DIGLEN 16           /* MD5 digest length */
+ #define MD5BLKLEN 64             /* MD5 block length */
+ #define MD5DIGLEN 16             /* MD5 digest length */
 
  typedef struct {
-   unsigned long chigh;         /* high 32bits of byte count */
-   unsigned long clow;          /* low 32bits of byte count */
-   unsigned long state[4];      /* state (ABCD) */
-   unsigned char buf[MD5BLKLEN];        /* input buffer */
-   unsigned char *ptr;          /* buffer position */
+   unsigned long chigh;           /* high 32bits of byte count */
+   unsigned long clow;            /* low 32bits of byte count */
+   unsigned long state[4];        /* state (ABCD) */
+   unsigned char buf[MD5BLKLEN];  /* input buffer */
+   unsigned char *ptr;            /* buffer position */
  } MD5CONTEXT;
 
  extern "C" {
-  void md5_init (MD5CONTEXT *ctx);
-  void md5_update (MD5CONTEXT *ctx,unsigned char *data,unsigned long len);
-  void md5_final (unsigned char *digest,MD5CONTEXT *ctx);
+  void md5_init   (MD5CONTEXT*    ctx );
+  void md5_update (MD5CONTEXT*    ctx,    unsigned char* data, unsigned long len);
+  void md5_final  (unsigned char* digest, MD5CONTEXT*    ctx );
  }
 #endif // HAVE_MD5
 
@@ -61,7 +61,7 @@ MsgId::MsgId(ENVELOPE *envelope)
 
    case (HEADER_MSGID) :
         if ( envelope->message_id
-             && strcmp( envelope->message_id, "") != 0 
+             && strcmp( envelope->message_id, ""  ) != 0
              && strcmp( envelope->message_id, "<>") != 0 )
           *this = envelope->message_id;
         else

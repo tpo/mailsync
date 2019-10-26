@@ -15,14 +15,15 @@ class MsgId : public string
 //////////////////////////////////////////////////////////////////////////
 {
   public:
-    MsgId(): string() {};
-    MsgId(char* m): string(m) {};
-    MsgId(string m): string(m) {};
-    MsgId(ENVELOPE *envelope);
-    void sanitize_message_id();
-    string to_msinfo_format();
-    string from_msinfo_format();
-    bool empty();
+    MsgId(                   ): string()  {};
+    MsgId( char*     m       ): string(m) {};
+    MsgId( string    m       ): string(m) {};
+    MsgId( ENVELOPE* envelope);
+
+    void    sanitize_message_id ();
+    string  to_msinfo_format    ();
+    string  from_msinfo_format  ();
+    bool    empty ();
 };
 
 #define __MAILSYNC_MSGID__

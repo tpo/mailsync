@@ -33,8 +33,8 @@ void Channel::print(FILE* f) {
 
 //////////////////////////////////////////////////////////////////////////
 //
-bool Channel::read_lasttime_seen( MsgIdsPerMailbox& mids_per_box, 
-                                  MailboxMap& deleted_mailboxes)
+bool Channel::read_seen_last_time( MsgIdsPerMailbox&  mids_per_box, 
+                                   MailboxMap&        deleted_mailboxes)
 //
 // Read from msinfo all the message ids that have been seen during the last
 // synchronization of this channel and return a hash-map that contains those
@@ -43,7 +43,7 @@ bool Channel::read_lasttime_seen( MsgIdsPerMailbox& mids_per_box,
 //
 // "deleted_mailboxes" contains mailboxes that were seen at the last sync but
 // were not included in the set of current mailboxes in store_a and store_b
-// this time
+// this time.
 //
 // If msinfo doesn't exist yet, it will be created.
 //
@@ -74,7 +74,8 @@ bool Channel::read_lasttime_seen( MsgIdsPerMailbox& mids_per_box,
   if (options.debug) printf( " Reading lasttime of channel \"%s\"\n",
                              this->name.c_str());
 
-  // msinfo is the name of the mailbox that contains the sync info
+  // mailsync will be using "msinfo", a special mailbox,
+  // to save all the msg-id's that it has seen
   current_context_passwd = &this->passwd;
   {
     bool tmp_log_error = options.log_error;
@@ -82,6 +83,7 @@ bool Channel::read_lasttime_seen( MsgIdsPerMailbox& mids_per_box,
     mail_create( NULL, nccs( this->msinfo )); // if one exists no problem
     options.log_error = tmp_log_error;
   }
+
   if (! (msinfo_stream = mail_open( NULL, nccs( this->msinfo ), OP_READONLY)))
   {
     fprintf( stderr, "Error: Couldn't open msinfo box %s.\n",
@@ -90,7 +92,11 @@ bool Channel::read_lasttime_seen( MsgIdsPerMailbox& mids_per_box,
     return 0;
   }
 
-  for ( msgno=1; msgno<=msinfo_stream->nmsgs; msgno++ ) {
+  // msinfo contains one email per channel with the 'Subject:' header set
+  // to the name of the channel. The email contains a sequence of mailbox
+  // names each followed by a list of msg-id's that mailsync has seen in
+  // that mailbox.
+  for ( msgno = 1; msgno <= msinfo_stream->nmsgs; msgno++ ) {
     envelope = mail_fetchenvelope( msinfo_stream, msgno );
     if (! envelope) {
       fprintf( stderr,
@@ -99,25 +105,12 @@ bool Channel::read_lasttime_seen( MsgIdsPerMailbox& mids_per_box,
       fprintf( stderr, "       Aborting!\n" );
       return 0;
     }
-    // Make sure that the mail is from mailsync 
-    if ( ! ( envelope->from && envelope->from->mailbox && envelope->subject) ) {
-      // Mail with missing headers
-      fprintf( stderr, "Info: The msinfo box %s contains a message with"
-                       " missing \"From\" or \"Subject\" header information\n",
-                       this->msinfo.c_str() );
+    if( ! has_channel_format( envelope) )
       continue;
-    }
-    if ( strncmp( envelope->from->mailbox, "mailsync", 8) ) {
-      // This is not an email describing a mailsync channel!
-      fprintf( stderr, "Info: The msinfo box %s contains the non-mailsync"
-                       "mail: \"From: %s\"\n",
-                       this->msinfo.c_str(), envelope->from->mailbox );
-      continue;
-    }
 
     // The subject line contains the name of the channel
     if ( this->name == envelope->subject ) {
-      // Found our lasttime
+      // we've found the channel
 
       text = mail_fetchtext_full( msinfo_stream, msgno, &textlen, FT_INTERNAL);
       if ( text )
@@ -146,8 +139,9 @@ bool Channel::read_lasttime_seen( MsgIdsPerMailbox& mids_per_box,
         if ( text[k] != '<' ) {
           currentbox = &text[k];
           // if the mailbox is unknown
-          if ( store_a.boxes.find(currentbox) == store_a.boxes.end()
+          if (    store_a.boxes.find(currentbox) == store_a.boxes.end()
                && store_b.boxes.find(currentbox) == store_b.boxes.end()) {
+
             deleted_mailboxes[currentbox]; //-% creates a new MailboxProperties
           }
         }
@@ -190,8 +184,42 @@ bool Channel::read_lasttime_seen( MsgIdsPerMailbox& mids_per_box,
 
 //////////////////////////////////////////////////////////////////////////
 //
-bool Channel::open_for_copying( string mailbox_name,
-                                enum direction_t direction)
+bool Channel::has_channel_format( const ENVELOPE* envelope)
+//
+// make sure that the envelope has the format we expect.
+//
+// The msinfo special mailbox that mailsync uses to save all the
+// msg-id's that it has seen contains one email per channel.
+//
+// The 'From:' header of that email needs to contain the text 'mailsync'
+// and there has to be a 'Subject:' header (which should contain the
+// name of the channel).
+//
+//////////////////////////////////////////////////////////////////////////
+{
+  // Make sure that the mail is from mailsync 
+  if ( ! ( envelope->from && envelope->from->mailbox && envelope->subject) ) {
+    // Mail with missing headers
+    fprintf( stderr, "Info: The msinfo box %s contains a message with"
+                     " missing \"From\" or \"Subject\" header information\n",
+                     this->msinfo.c_str() );
+    return false;
+  }
+  if ( strncmp( envelope->from->mailbox, "mailsync", 8) ) {
+    // This is not an email describing a mailsync channel!
+    fprintf( stderr, "Info: The msinfo box %s contains the non-mailsync"
+                     "mail: \"From: %s\"\n",
+                     this->msinfo.c_str(), envelope->from->mailbox );
+    return false;
+  }
+
+  return true;
+}
+
+//////////////////////////////////////////////////////////////////////////
+//
+bool Channel::open_for_copying( string            mailbox_name,
+                                enum direction_t  direction)
 //
 // Opens both stores in the appropriate modes for copying
 //
@@ -228,10 +256,10 @@ bool Channel::open_for_copying( string mailbox_name,
 
 //////////////////////////////////////////////////////////////////////////
 //
-bool Channel::copy_message( unsigned long msgno,
-                            const MsgId& msgid,
-                            string mailbox_name,
-                            enum direction_t direction)
+bool Channel::copy_message( unsigned long     msgno,
+                            const MsgId&      msgid,
+                            string            mailbox_name,
+                            enum direction_t  direction)
 //
 // Copies the message "msgno" with "msgid" from one store to the other
 // depending on "direction"
@@ -354,8 +382,8 @@ bool Channel::copy_message( unsigned long msgno,
 
 //////////////////////////////////////////////////////////////////////////
 //
-bool Channel::write_thistime_seen( const MailboxMap& deleted_mailboxes,
-                                         MsgIdsPerMailbox& thistime)
+bool Channel::write_seen_this_time( const MailboxMap&        deleted_mailboxes,
+                                          MsgIdsPerMailbox&  thistime)
 //
 // Save in channel.msinfo all mailboxes with all msgids (found in
 // "thistime") they contain.

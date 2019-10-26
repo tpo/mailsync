@@ -63,7 +63,7 @@ AC_DEFUN([AC_WITH_CCLIENT],[
     dnl
     dnl Checking whether c-client was built with kerberos gssapi support
     dnl
-    AC_MSG_CHECKING([whether c-client built with kerberos gssapi support])
+    AC_MSG_CHECKING([whether c-client was built with kerberos gssapi support])
     AC_EGREP_HEADER(auth_gss,${CCLIENT_LINKAGE_H},
      [
       need_krb=yes

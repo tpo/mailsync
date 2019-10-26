@@ -13,6 +13,6 @@ Package: mailsync
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, libc-client2007e (>= 8:2007f~dfsg-1)
 Description: Synchronize IMAP mailboxes
- Mailsync is a way of keeping a collection of mailboxes synchronized. The
+ Mailsync is a tool for synchronizing a collection of mailboxes. The
  mailboxes may be on the local filesystem or on an IMAP server.
 

@@ -1,3 +1,13 @@
+mailsync (5.2.3~pre2-1) unstable; urgency=low
+
+  * upstream changes:
+    * fix prefix matching bug
+    * don't segfault when migrating to -t md5
+      (https://sourceforge.net/tracker/?group_id=6374&atid=106374)
+  * THIS IS AN UNRELEASED PRE-RELEASE
+
+ -- Tomas Pospisek <tpo_deb@sourcepole.ch>  Sat, 26 Jan 2013 12:54:44 +0100
+
 mailsync (5.2.2-3) unstable; urgency=high
 
   * set urgency=high because libc-client broke mailsync and the

@@ -77,13 +77,13 @@ AC_DEFUN([AC_WITH_CCLIENT],[
     dnl Checking if kerberos is required and available for linking against c-client
     dnl
     AC_MSG_CHECKING([if kerberos is required and available for linking against c-client])
-    if test "${need_krb}" = "yes" -a "${HAVE_KRB5_GSSAPI}" != "yes"; then
+    if test "${need_krb}" = "yes" -a "${HAVE_krb5_gssapi}" != "yes"; then
      AC_MSG_RESULT([no])
      ifelse([$2], , :, [$2])
     else
      if test "${need_krb}" = "yes" ; then
       AC_MSG_RESULT([yes])
-      CCLIENT_LIBS="${CCLIENT_LIBS} ${KRB5_GSSAPI_LIBS}"
+      CCLIENT_LIBS="${CCLIENT_LIBS} ${krb5_gssapi_LIBS}"
      else
       AC_MSG_RESULT([not required])
      fi

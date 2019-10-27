@@ -25,7 +25,7 @@ AC_INET_FUNCS(,[
 ])
 
 AC_SO_PREFERENCE([yes])
-AC_WITH_OPENSSL
+PKG_CHECK_MODULES([openssl], [libssl libcrypto], [HAVE_openssl="yes"], [HAVE_openssl="no"])
 AC_WITH_KRB5
 AC_KRB5_GSSAPI
 AC_WITH_PAM

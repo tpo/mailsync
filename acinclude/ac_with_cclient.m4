@@ -89,7 +89,7 @@ AC_DEFUN([AC_WITH_CCLIENT],[
      fi
      
      dnl
-     dnl Checking whether c-client was built with ssl support
+     dnl Checking whether c-client requires ssl linkage
      dnl
      AC_MSG_CHECKING([whether c-client requires ssl linkage])
      AC_EGREP_HEADER(ssl_,${CCLIENT_LINKAGE_C},
@@ -100,10 +100,10 @@ AC_DEFUN([AC_WITH_CCLIENT],[
       ]
      )
      AC_MSG_RESULT([${need_ssl}])
-     if test "${need_ssl}" = "yes" -a "${HAVE_OPENSSL}" != "yes" ; then
+     if test "${need_ssl}" = "yes" -a "${HAVE_openssl}" != "yes" ; then
       ifelse([$2], , :, [$2])
      else
-      CCLIENT_LIBS="${CCLIENT_LIBS} ${OPENSSL_LDFLAGS} ${OPENSSL_LIBS}"
+      CCLIENT_LIBS="${CCLIENT_LIBS} ${openssl_LDFLAGS} ${openssl_LIBS}"
       AC_MSG_CHECKING([if simple c-client program compiles without pam support])
       AC_LANG_PUSH(C)
        xCPPFLAGS="${CPPFLAGS}"

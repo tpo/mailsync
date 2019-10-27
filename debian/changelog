@@ -1,10 +1,14 @@
 mailsync (5.2.3~pre2-2) unstable; urgency=low
 
-  * thanks a lot Scott Kitterman and Simon Elsbrock for your
-    FTBS fixes
-  * merge with internal mailsync version
   * MiniDebConf in Vaumarcus release. Thanks a lot to
     Didier Raboud and team for providing this oportunity!
+
+  * merge internal changes with FTBFS fixes
+    thanks a lot Scott Kitterman and Simon Elsbrock!
+
+  * move to pkg-config
+    thanks to  Joost van Baal-Ilić for leading me!
+
   * THIS IS AN UNRELEASED PRE-RELEASE
 
  -- Tomas Pospisek <tpo_deb@sourcepole.ch>  Sat, 26 Oct 2019 19:29:21 +0200

@@ -39,7 +39,7 @@ come up with alternatives to a few functions like stat() and getenv().
    distribution or from http://mailsync.sourceforge.net.
 
 If you're building mailsync from git you'll need an automake version later
-than 1.6. The following should do the deal:
+than 1.6 and pkg-config. The following should do the deal:
 
 2. ./autogen.sh
 

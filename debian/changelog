@@ -1,4 +1,4 @@
-mailsync (5.2.3~pre2-2) unstable; urgency=low
+mailsync (5.2.3-1) unstable; urgency=low
 
   * MiniDebConf@Vaumarcus and EmacsConf@Zürich release.
     Thanks a lot to Didier Raboud and team and 200ok
@@ -12,8 +12,6 @@ mailsync (5.2.3~pre2-2) unstable; urgency=low
 
   * remove all checks for transitive libraries. Only
     check for c-client and not its dependencies.
-
-  * THIS IS AN UNRELEASED PRE-RELEASE
 
  -- Tomas Pospisek <tpo_deb@sourcepole.ch>  Sat, 02 Nov 2019 16:31:06 +0100
 

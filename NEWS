@@ -1,6 +1,11 @@
 New in 5.2.3:
 
  * migrated source repository from cvs to git
+ * don't crash when running -t md5 on -t msgid ~/.mailsync_state
+ * don't check for transient libraries (pam, openssl, kerberos).
+   Defer that to c-client. Along with that: drop static linking
+   to against c-client. Only link dynamically.
+ * improve code readability
  
 New in 5.2.2:
 

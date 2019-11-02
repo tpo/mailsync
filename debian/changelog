@@ -1,7 +1,8 @@
 mailsync (5.2.3~pre2-2) unstable; urgency=low
 
-  * MiniDebConf in Vaumarcus release. Thanks a lot to
-    Didier Raboud and team for providing this oportunity!
+  * MiniDebConf@Vaumarcus and EmacsConf@Zürich release.
+    Thanks a lot to Didier Raboud and team and 200ok
+    for providing the opportunities to hack on stuff!
 
   * merge internal changes with FTBFS fixes
     thanks a lot Scott Kitterman and Simon Elsbrock!
@@ -9,9 +10,12 @@ mailsync (5.2.3~pre2-2) unstable; urgency=low
   * move to pkg-config
     thanks to  Joost van Baal-Ilić for leading me!
 
+  * remove all checks for transitive libraries. Only
+    check for c-client and not its dependencies.
+
   * THIS IS AN UNRELEASED PRE-RELEASE
 
- -- Tomas Pospisek <tpo_deb@sourcepole.ch>  Sat, 26 Oct 2019 19:29:21 +0200
+ -- Tomas Pospisek <tpo_deb@sourcepole.ch>  Sat, 02 Nov 2019 16:31:06 +0100
 
 mailsync (5.2.2-3.1) unstable; urgency=medium
 

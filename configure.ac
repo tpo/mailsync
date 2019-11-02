@@ -20,10 +20,6 @@ AC_CHECK_FUNCS([getpass memset strchr strdup strerror strtoul])
 # default action of AC_CHECK_LIB is to add item to LIBS
 AC_CHECK_LIB(crypt,crypt)
 
-AC_INET_FUNCS(,[
- AC_MSG_ERROR([essential functions missing])
-])
-
 AC_SO_PREFERENCE([yes])
 PKG_CHECK_MODULES([openssl], [libssl libcrypto], [HAVE_openssl="yes"], [HAVE_openssl="no"])
 PKG_CHECK_MODULES([krb5], [krb5])

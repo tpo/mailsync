@@ -20,8 +20,6 @@ AC_CHECK_FUNCS([getpass memset strchr strdup strerror strtoul])
 # default action of AC_CHECK_LIB is to add item to LIBS
 AC_CHECK_LIB(crypt,crypt)
 
-AC_SO_PREFERENCE([yes])
-
 AC_WITH_CCLIENT(,[
  AC_MSG_ERROR([a working c-client installation is required for building mailsync])
 ])

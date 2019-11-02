@@ -24,7 +24,6 @@ AC_SO_PREFERENCE([yes])
 PKG_CHECK_MODULES([openssl], [libssl libcrypto], [HAVE_openssl="yes"], [HAVE_openssl="no"])
 PKG_CHECK_MODULES([krb5], [krb5])
 PKG_CHECK_MODULES([krb5_gssapi], [krb5-gssapi], [HAVE_krb5_gssapi="yes"], [HAVE_krb5_gssapi="no"])
-AC_WITH_PAM
 
 AC_WITH_CCLIENT(,[
  AC_MSG_ERROR([a working c-client installation is required for building mailsync])

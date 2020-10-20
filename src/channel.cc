@@ -100,7 +100,7 @@ bool Channel::read_seen_last_time( MsgIdsPerMailbox&  mids_per_box,
     envelope = mail_fetchenvelope( msinfo_stream, msgno );
     if (! envelope) {
       fprintf( stderr,
-               "Error: Couldn't fetch enveloppe #%lu from msinfo box %s\n",
+               "Error: Couldn't fetch envelope #%lu from msinfo box %s\n",
                        msgno, this->msinfo.c_str() );
       fprintf( stderr, "       Aborting!\n" );
       return 0;
@@ -293,7 +293,7 @@ bool Channel::copy_message( unsigned long     msgno,
 
   if (! envelope) {
     fprintf( stderr,
-             "Error: Couldn't fetch enveloppe #%lu from mailbox box %s\n",
+             "Error: Couldn't fetch envelope #%lu from mailbox box %s\n",
              msgno, store_from.stream->mailbox );
     return 0;
   }
@@ -415,7 +415,7 @@ bool Channel::write_seen_this_time( const MailboxMap&        deleted_mailboxes,
     if (! envelope)
     {
       fprintf( stderr,
-               "Error: Couldn't fetch enveloppe #%lu from mailbox box %s\n",
+               "Error: Couldn't fetch envelope #%lu from mailbox box %s\n",
                msgno, msinfo_stream->mailbox);
       return 0;
     }

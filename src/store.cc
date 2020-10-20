@@ -233,7 +233,7 @@ bool Store::fetch_message_ids(MsgIdPositions& mids, MsgIdSet& remove_set)
     envelope = mail_fetchenvelope( this->stream, msgno);
     if (! envelope) {
       fprintf( stderr,
-               "Error: Couldn't fetch enveloppe #%lu from mailbox box %s\n",
+               "Error: Couldn't fetch envelope #%lu from mailbox box %s\n",
                msgno, this->stream->mailbox);
       fprintf( stderr, "       Aborting!\n");
       return 0;
@@ -326,7 +326,7 @@ bool Store::list_contents()
 
     if (! envelope) {
       fprintf( stderr,
-               "Error: Couldn't fetch enveloppe #%lu from mailbox box %s\n",
+               "Error: Couldn't fetch envelope #%lu from mailbox box %s\n",
                msgno, this->stream->mailbox);
       fprintf( stderr,
                "       Aborting!\n");
@@ -369,7 +369,7 @@ bool Store::flag_message_for_removal( unsigned long msgno,
   envelope = mail_fetchenvelope( this->stream, msgno );
   if (! envelope) {
     fprintf( stderr,
-             "Error: Couldn't fetch enveloppe #%lu from mailbox box %s\n",
+             "Error: Couldn't fetch envelope #%lu from mailbox box %s\n",
              msgno, this->stream->mailbox);
     return 0;
   }

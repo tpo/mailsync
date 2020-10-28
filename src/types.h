@@ -20,9 +20,9 @@ typedef struct MailboxProperties_struct {
   bool done;                            // mailbox has been treated (synced...)
 
   MailboxProperties_struct(): no_inferiors(false),
-                       no_select(false),
-                       contains_messages(false),
-                       done(false) {};
+                              no_select(false),
+                              contains_messages(false),
+                              done(false) {};
 } MailboxProperties;
 
 // we sort our mailboxes by length. That way longer mailboxes and their

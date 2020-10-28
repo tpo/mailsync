@@ -33,22 +33,22 @@ typedef struct options_struct {
   bool log_error;              // Log serious errors
 
   options_struct(): log_chatter(0),
-               log_warn(0),
-               log_parse(0),
-               show_summary(1),
-               show_from(0),
-               show_message_id(0),
-               delete_messages(1),
-               delete_empty_mailboxes(0),
-               debug(0),
-               debug_imap(0),
-               debug_config(0),
-               report_braindammaged_msgids(0),
-               copy_deleted_messages(0),
-               simulate(0),
-               msgid_type(HEADER_MSGID),
-               expunge_duplicates(1),
-               log_error(1) {};
+                    log_warn(0),
+                    log_parse(0),
+                    show_summary(1),
+                    show_from(0),
+                    show_message_id(0),
+                    delete_messages(1),
+                    delete_empty_mailboxes(0),
+                    debug(0),
+                    debug_imap(0),
+                    debug_config(0),
+                    report_braindammaged_msgids(0),
+                    copy_deleted_messages(0),
+                    simulate(0),
+                    msgid_type(HEADER_MSGID),
+                    expunge_duplicates(1),
+                    log_error(1) {};
 } options_t;
 
 #define __MAILSYNC_OPTIONS__

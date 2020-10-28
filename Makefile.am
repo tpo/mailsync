@@ -1,5 +1,7 @@
 SUBDIRS=src
 AUTOMAKE_OPTIONS=foreign
+# tell autoreconf how to call aclocal
+ACLOCAL_AMFLAGS=-I acinclude
 
 EXTRA_DIST=THANKS autogen.sh doc debian acinclude
 

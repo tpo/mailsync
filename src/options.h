@@ -11,7 +11,7 @@ typedef enum { HEADER_MSGID, MD5_MSGID } msgid_t;
 // Options, commandline parsing and default settings
 //////////////////////////////////////////////////////////////////////////
 
-typedef struct options_t {
+typedef struct options_struct {
   bool log_chatter;
   bool log_warn;               // Show c-client warnings and warnings about
   bool log_parse;              // Log RFC822 parse errors
@@ -32,7 +32,7 @@ typedef struct options_t {
   bool expunge_duplicates;     // Should duplicates be deleted?
   bool log_error;              // Log serious errors
 
-  options_t(): log_chatter(0),
+  options_struct(): log_chatter(0),
                log_warn(0),
                log_parse(0),
                show_summary(1),
@@ -49,7 +49,7 @@ typedef struct options_t {
                msgid_type(HEADER_MSGID),
                expunge_duplicates(1),
                log_error(1) {};
-};
+} options_t;
 
 #define __MAILSYNC_OPTIONS__
 #endif

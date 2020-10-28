@@ -13,17 +13,17 @@ using namespace std;
 
 enum operation_mode_t { mode_unknown, mode_sync, mode_list, mode_diff };
 
-typedef struct MailboxProperties {
+typedef struct MailboxProperties_struct {
   bool no_inferiors;
   bool no_select;
   bool contains_messages;
   bool done;                            // mailbox has been treated (synced...)
 
-  MailboxProperties(): no_inferiors(false),
+  MailboxProperties_struct(): no_inferiors(false),
                        no_select(false),
                        contains_messages(false),
                        done(false) {};
-};
+} MailboxProperties;
 
 // we sort our mailboxes by length. That way longer mailboxes and their
 // submailboxes (!!) will be traversed first

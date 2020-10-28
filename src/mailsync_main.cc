@@ -22,14 +22,14 @@ using std::make_pair;
 
 #include "c-client-header.h"
 
-#include "configuration.h"     // configuration parsing and setup
-#include "options.h"           // options and default settings
-#include "commandline.h"       // commandline parsing
-#include "types.h"             // MailboxMap, Passwd
-#include "store.h"             // Store
-#include "channel.h"           // Channel
-#include "mail_handling.h"     // functions implementing various
-                               // synchronization steps and helper functions
+#include "configuration.h"       // configuration parsing and setup
+#include "options.h"             // options and default settings
+#include "commandline.h"         // commandline parsing
+#include "types.h"               // MailboxMap, Passwd
+#include "store.h"               // Store
+#include "channel.h"             // Channel
+#include "mail_handling.h"       // functions implementing various
+                                 // synchronization steps and helper functions
 #include "list_mails_in_store.h"
 
 //------------------------------- Defines  -------------------------------

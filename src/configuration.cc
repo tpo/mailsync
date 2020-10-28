@@ -28,7 +28,7 @@ struct Token {
 //////////////////////////////////////////////////////////////////////////
 //
 void die_with_fatal_parse_error( Token* t,
-                                 char * errorMessage,
+                                 const char * errorMessage,
                                  const char * insertIntoMessage = NULL)
 //
 // Fatal error while parsing the config file

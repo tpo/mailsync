@@ -355,7 +355,7 @@ bool Store::list_contents()
 //
 bool Store::flag_message_for_removal( unsigned long msgno,
                                      const MsgId& msgid,
-                                     char * place)
+                                     char const * place)
 //
 // returns !0 on success
 //

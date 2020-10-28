@@ -30,6 +30,7 @@ using std::make_pair;
 #include "channel.h"           // Channel
 #include "mail_handling.h"     // functions implementing various
                                // synchronization steps and helper functions
+#include "list_mails_in_store.h"
 
 //------------------------------- Defines  -------------------------------
 
@@ -147,27 +148,10 @@ int main(int argc, char** argv)
 
   // Display listing of the first mail store in case we're in list mode
   if ( operation_mode == mode_list ) {
-    if ( options.show_from | options.show_message_id ) {
-      for ( MailboxMap::iterator curr_mbox = store_a.boxes.begin() ; 
-            curr_mbox != store_a.boxes.end() ;
-            curr_mbox++ )
-      {
-        printf("\nMailbox: %s\n", curr_mbox->first.c_str());
-        if( curr_mbox->second.no_select )
-          printf("  not selectable\n");
-        else {
-          // TODO: shouldn't this be OP_READONLY
-          store_a.stream = store_a.mailbox_open( curr_mbox->first, 0);
-          if (! store_a.stream) break;
-          if (! store_a.list_contents() )
-            exit(1);
-        }
-      }
-    }
-    else {
-      print_list_with_delimiter(store_a.boxes, stdout, "\n");
-    } 
-   exit(0);
+    bool res;
+
+    res = list_mails_in_store( &options, store_a );
+    exit(!res);
   }
 
   //////////////////////////////////////////////////////////////////////

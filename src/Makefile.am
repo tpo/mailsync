@@ -5,7 +5,7 @@ INCLUDES=@CCLIENT_INCLUDES@
 LDADD=@CCLIENT_LIBS@
 AM_CXXFLAGS=@CCLIENT_CXXFLAGS@
 
-mailsync_SOURCES=mailsync_main.cc \
+mailsync_SOURCES=main.cc \
                  options.h \
                  commandline.cc commandline.h \
                  configuration.cc configuration.h \

@@ -93,7 +93,7 @@ int main(int argc, char** argv)
   // initialize c-client environment (~/.imparc etc.)
   env_init( getenv("USER"), getenv("HOME"));
 
-  // open a read only the connection to the first store
+  // open a read only connection to the first store
   if ( store_a.isremote ) {
     if (! store_a.store_open( OP_HALFOPEN | OP_READONLY) )
       return 1;
@@ -103,7 +103,7 @@ int main(int argc, char** argv)
     store_a.stream = NULL;
   }
 
-  // in case we want to sync - open a read only the connection
+  // in case we want to sync - open a read only connection
   // to the second store
   if (operation_mode == mode_sync && store_b.isremote)
   {

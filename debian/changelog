@@ -1,6 +1,7 @@
 mailsync (5.2.4-1) unstable; urgency=low
 
   * Fix othography: s/enveloppe/envelope/
+  * improve wording
 
  -- Tomas Pospisek <tpo_deb@sourcepole.ch>  Wed, 28 Oct 2020 09:11:23 +0100
 

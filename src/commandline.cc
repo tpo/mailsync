@@ -43,7 +43,7 @@ void usage()
   printf("  -vb      show warning about braindammaged message ids\n");
   printf("  -vw      show warnings\n");
   printf("  -vp      show RFC 822 parsing errors\n");
-  printf("  -f conf  use alternate config file\n");
+  printf("  -f conf  use alternative config file\n");
   printf("  -t [msgid|md5] msg id type\n");
   printf("\n");
   return;

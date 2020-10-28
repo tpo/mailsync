@@ -18,7 +18,8 @@ Mailsync
 6.1     Message id algorithms
 7.   History
 8.   Further reading
-9.   Support and homepage
+9.   Support, development, new versions and homepage
+9.1     Developing mailsync
 10.  Author, disclaimer, etc.
 
 
@@ -499,6 +500,7 @@ http://www.iana.org/assignments/imap4-capabilities
 http://www.ics.uci.edu/~mh/book/mh/tocs/jump.htm
 
 
+
 9. Support, development, new versions and homepage
 --------------------------------------------------
 
@@ -510,6 +512,18 @@ suggestion to contribute then subscribe to the mailsync mailing
 list and post it there. Instructions on how to do so can be found
 on mailsyncs homepage. Tomas Pospisek will also provide commercial
 support if needed (see below).
+
+
+
+9.1 Developing mailsync
+-----------------------
+
+If you make changes then:
+
+* change the version in configure.ac
+* log the change in debian/changelog
+  * don't forget to use the same version as in configure.ac
+* run `autoreconf -fi`
 
 
 

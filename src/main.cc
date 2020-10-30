@@ -118,26 +118,17 @@ int main(const int argc, const char** argv)
   // initialize c-client environment (~/.imparc etc.)
   env_init( getenv("USER"), getenv("HOME"));
 
-  // open a read only connection to the first store
-  if ( store_a.isremote ) {
-    if (! store_a.store_open( OP_HALFOPEN | OP_READONLY) )
-      return 1;
-  }
-  else
+  if ( store_a.open_read_only_connection() == FAILED )
   {
-    store_a.stream = NULL;
+    exit(1);
   }
 
-  // in case we want to sync - open a read only connection
-  // to the second store
-  if (operation_mode == mode_sync && store_b.isremote)
+  if (operation_mode == mode_sync || operation_mode == mode_diff )
   {
-    if (! store_b.store_open( OP_HALFOPEN | OP_READONLY) )
-      return 1;
-  }
-  else
-  {
-    store_b.stream = NULL;
+    if ( store_b.open_read_only_connection() == FAILED )
+    {
+      exit(1);
+    }
   }
 
   

@@ -2,6 +2,7 @@
 #include "utils.h"
 #include "store.h"
 #include "mail_handling.h"
+#include "types.h"         // Passwd, SUCCESS/FAILED
 
 #include <iostream>     // only for debuging
 
@@ -480,4 +481,28 @@ int Store::mailbox_expunge( string mailbox_name )
   expunged_mails = 0; // is manipulated by the c-client callback mm_expunge
   mail_expunge( this->stream );
   return expunged_mails;
+}
+
+//////////////////////////////////////////////////////////////////////////
+//
+bool Store::open_read_only_connection( )
+//
+// returns FAILED/SUCCESS
+//
+//////////////////////////////////////////////////////////////////////////
+{
+  if ( this->isremote )
+  {
+    if (! this->store_open( OP_HALFOPEN | OP_READONLY) )
+    {
+      fprintf( stderr, "Error: Could not open a half open, read only connection to store %s\n",
+               this->name.c_str() );
+      return FAILED;
+    }
+  }
+  else
+  {
+    this->stream = NULL;
+  }
+  return SUCCESS;
 }

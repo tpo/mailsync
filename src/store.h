@@ -53,6 +53,7 @@ class Store
     void  display_driver();
     void  print_error( const char * cause, const string& mailbox);
     int   mailbox_expunge( string mailbox_name);
+    bool  open_read_only_connection();
 };
 
 #define __MAILSYNC_STORE__

@@ -3,6 +3,7 @@
 #include "store.h"
 #include "mail_handling.h"
 #include "types.h"         // Passwd, SUCCESS/FAILED
+#include <cassert>         // assert
 
 #include <iostream>     // only for debuging
 
@@ -505,4 +506,39 @@ bool Store::open_read_only_connection( )
     this->stream = NULL;
   }
   return SUCCESS;
+}
+
+//////////////////////////////////////////////////////////////////////////
+//
+void Store::acquire_mailboxes_and_delimiter( /*in*/ const bool debug )
+//
+//////////////////////////////////////////////////////////////////////////
+{
+  // Display which drivers we're using for accessing the store
+  if (debug) {
+    this->display_driver();
+  }
+
+  if (debug) printf( " Items in store \"%s\":\n", this->name.c_str() );
+
+  if (! this->acquire_mail_list() && options.log_warn) {
+    // TODO: fail here?
+    printf( " Store pattern doesn't match any selectable mailbox\n");
+  }
+
+  if (this->delim == '!') {
+    this->get_delim();
+  }
+
+  if (this->delim == '!') { // this should not happen
+    assert(0);
+  }
+  else if (debug) {
+    // delim can be '' for INBOXes
+    if ( ! this->delim )
+      printf(" No delimiter found for store \"%s\"\n", this->name.c_str());
+    else
+      printf( " Delimiter for store \"%s\" is '%c'\n",
+              this->name.c_str(), this->delim );
+  }
 }

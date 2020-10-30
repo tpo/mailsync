@@ -131,33 +131,9 @@ int main(const int argc, const char** argv)
     }
   }
 
+  // TODO: unify NIL / NULL 
   
-  // Get list of all mailboxes from first store
-  //
-  if (debug) printf( " Items in store \"%s\":\n", store_a.name.c_str() );
-  if (! store_a.acquire_mail_list() && options.log_warn) {
-    printf( " Store pattern doesn't match any selectable mailbox\n");
-  }
-  if (store_a.delim == '!') {
-    store_a.get_delim();
-  }
-  if (store_a.delim == '!') {  // this should not happen
-    assert(0);
-  }
-  else if (debug) {
-    // store_b.delim can be '' for INBOXes
-    if ( ! store_a.delim )
-      printf(" No delimiter found for store \"%s\"\n", store_a.name.c_str());
-    else
-      printf( " Delimiter for store \"%s\" is '%c'\n",
-              store_a.name.c_str(), store_a.delim );
-  }
-
-
-  // Display which drivers we're using for accessing the first store
-  if (debug) {
-    store_a.display_driver();
-  }
+  store_a.acquire_mailboxes_and_delimiter( debug );
 
   ///////////////////////////// mode_list //////////////////////////////
 
@@ -179,33 +155,8 @@ int main(const int argc, const char** argv)
   // Get list of all mailboxes and delimiter from second store
   //
   if ( operation_mode == mode_sync ) {
-
-    store_b.boxes.clear();
-
-    if (debug) printf( " Items in store \"%s\":\n", store_b.name.c_str() );
-    // Get a list of mailboxes from the second store
-    if (! store_b.acquire_mail_list() && options.log_warn )
-    {
-      printf( " Store pattern doesn't match any selectable mailbox\n");
-    }
-    // Display which drivers we're using for accessing the second store
-    if (debug) store_b.display_driver();
-
-    // Making sure we get ahold of the mailbox-hierarchy delimiter
-    if (store_b.delim == '!')
-      store_b.get_delim();
-    if (store_a.delim == '!') {  // this should not happen
-      assert(0);
-    }
-    else if (debug) {
-      if (! store_b.delim )
-        printf(" No delimiter found for store \"%s\"\n", store_b.name.c_str());
-      else
-        printf( " Delimiter for store \"%s\" is '%c'\n",
-                store_b.name.c_str(), store_b.delim);
-    }
+    store_b.acquire_mailboxes_and_delimiter( debug );
   }
-
 
   //////////////////////// mode_diff or mode_sync //////////////////////
 

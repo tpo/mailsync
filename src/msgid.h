@@ -16,9 +16,9 @@ class MsgId : public string
 {
   public:
     MsgId(                   ): string()  {};
-    MsgId( char*     m       ): string(m) {};
+    MsgId(       char*     m ): string(m) {};
     MsgId( const char*     m ): string(m) {};
-    MsgId( string    m       ): string(m) {};
+    MsgId( string          m ): string(m) {};
     MsgId( ENVELOPE* envelope);
 
     void    sanitize_message_id ();

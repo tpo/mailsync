@@ -37,6 +37,9 @@ using std::make_pair;
 #define CREATE   1
 #define NOCREATE 0
 
+#define FAILED  false
+#define SUCCESS true
+
 //------------------------ Global Variables ------------------------------
 
 // current operation mode
@@ -54,9 +57,38 @@ Store*       match_pattern_store;
 Passwd * current_context_passwd = NULL;
 //////////////////////////////////////////////////////////////////////////
 
+bool parse_arguments_read_config_file_choose_operation_mode( /*in*/    const int    argc,
+                                                             /*in*/    const char** argv,
+                                                             /*inout*/ Channel*     channel)
+{
+
+  string config_file;
+  vector<string> channels_and_stores;
+  // bad command line parameters
+  if (! read_commandline_options( argc,
+                                  argv,
+                                  options,
+                                  channels_and_stores,
+                                  config_file) )
+  {
+    return FAILED;
+  }
+
+  // TODO: operation_mode shouldn't be a global variable
+  operation_mode = setup_channel_stores_and_mode( config_file,
+                                                  channels_and_stores,
+                                                  *channel );
+  if ( operation_mode == mode_unknown )
+  {
+    return FAILED;
+  }
+
+  return SUCCESS;
+}
+
 //////////////////////////////////////////////////////////////////////////
 //
-int main(int argc, char** argv)
+int main(const int argc, const char** argv)
 //
 //////////////////////////////////////////////////////////////////////////
 {
@@ -71,21 +103,12 @@ int main(int argc, char** argv)
 
 #include "linkage.c"
 
-  //
-  // Parse arguments, read config file, choose operation mode
-  // --------------------------------------------------------
+  if( parse_arguments_read_config_file_choose_operation_mode( /*in const*/ argc,
+                                                              /*in const*/ argv,
+                                                              /*inout   */ &channel )
+      == FAILED )
   {
-    string config_file;
-    vector<string> channels_and_stores;
-    // bad command line parameters
-    if (! read_commandline_options( argc, argv, options,
-                                   channels_and_stores, config_file) )
-      exit(1);         
-    operation_mode = setup_channel_stores_and_mode( config_file,
-                                                    channels_and_stores,
-                                                    channel);
-    if ( operation_mode == mode_unknown )
-      exit(1);
+    exit(1);
   }
 
   store_a.boxes.clear();

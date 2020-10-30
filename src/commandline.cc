@@ -46,17 +46,15 @@ void usage()
   printf("  -f conf  use alternative config file\n");
   printf("  -t [msgid|md5] msg id type\n");
   printf("\n");
-  return;
 }
 
 //////////////////////////////////////////////////////////////////////////
 //
-// const impossible here? (tpo)               vvvv
-bool read_commandline_options( const int argc,
-                                     char** argv,
-                                     options_t& options,
-                                     vector<string>& channels_and_stores,
-                                     string& config_file )
+bool read_commandline_options( const int              argc,
+                               const char**           argv,
+                                     options_t&       options,
+                                     vector<string>&  channels_and_stores,
+                                     string&          config_file )
 //
 // Read and parse commandline options
 //

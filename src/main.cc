@@ -45,6 +45,11 @@ using std::make_pair;
 // current operation mode
 enum operation_mode_t operation_mode = mode_unknown;
 // options and default settings 
+//
+// These are global, because we need to have access to them
+// in callback functions (f.ex. mm_list) for c-client, where
+// the callback interface does not allow to pass the options
+// into the callback.
 options_t options;
 
 // won't link correctly if this is static - why?
@@ -74,7 +79,6 @@ bool parse_arguments_read_config_file_choose_operation_mode( /*in*/  const int  
     return FAILED;
   }
 
-  // TODO: operation_mode shouldn't be a global variable
   operation_mode = setup_channel_stores_and_mode( config_file,
                                                   channels_and_stores,
                                                   *channel );

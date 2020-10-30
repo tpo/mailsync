@@ -57,9 +57,9 @@ Store*       match_pattern_store;
 Passwd * current_context_passwd = NULL;
 //////////////////////////////////////////////////////////////////////////
 
-bool parse_arguments_read_config_file_choose_operation_mode( /*in*/    const int    argc,
-                                                             /*in*/    const char** argv,
-                                                             /*inout*/ Channel*     channel)
+bool parse_arguments_read_config_file_choose_operation_mode( /*in*/  const int    argc,
+                                                             /*in*/  const char** argv,
+                                                             /*out*/ Channel*     channel)
 {
 
   string config_file;
@@ -105,7 +105,7 @@ int main(const int argc, const char** argv)
 
   if( parse_arguments_read_config_file_choose_operation_mode( /*in const*/ argc,
                                                               /*in const*/ argv,
-                                                              /*inout   */ &channel )
+                                                              /*out*/      &channel )
       == FAILED )
   {
     exit(1);

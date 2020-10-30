@@ -37,9 +37,6 @@ using std::make_pair;
 #define CREATE   1
 #define NOCREATE 0
 
-#define FAILED  false
-#define SUCCESS true
-
 //------------------------ Global Variables ------------------------------
 
 // current operation mode

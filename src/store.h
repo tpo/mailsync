@@ -7,6 +7,7 @@
 #include "c-client-header.h"
 #include "types.h"
 #include "msgid.h"
+#include "options.h"           // options and default settings
 
 //////////////////////////////////////////////////////////////////////////
 //
@@ -55,6 +56,7 @@ class Store
     int   mailbox_expunge( string mailbox_name);
     bool  open_read_only_connection();
     void  acquire_mailboxes_and_delimiter( const bool debug);
+    bool  list_mails( const options_t* options);
 };
 
 #define __MAILSYNC_STORE__

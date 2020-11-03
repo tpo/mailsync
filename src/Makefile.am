@@ -17,5 +17,4 @@ mailsync_SOURCES=main.cc \
                  store.cc store.h \
                  channel.cc channel.h \
                  msgid.cc msgid.h \
-                 msgstring.c msgstring.h \
-                 list_mails_in_store.cc list_mails_in_store.h
+                 msgstring.c msgstring.h

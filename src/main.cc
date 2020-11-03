@@ -30,7 +30,6 @@ using std::make_pair;
 #include "channel.h"             // Channel
 #include "mail_handling.h"       // functions implementing various
                                  // synchronization steps and helper functions
-#include "list_mails_in_store.h"
 
 //------------------------------- Defines  -------------------------------
 
@@ -141,7 +140,7 @@ int main(const int argc, const char** argv)
   if ( operation_mode == mode_list ) {
     bool res;
 
-    res = list_mails_in_store( &options, store_a );
+    res = store_a.list_mails( &options );
     exit(!res);
   }
 

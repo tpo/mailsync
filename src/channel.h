@@ -35,6 +35,7 @@ class Channel
                               const MsgId&       msgid,
                               string             mailbox_name,
                               enum direction_t   direction);
+    void list_mailboxes();
 
   private:
     bool has_channel_format ( const ENVELOPE* envelope);

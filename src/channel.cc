@@ -1,3 +1,4 @@
+#include <stdio.h>         // printf
 #include "channel.h"
 #include "utils.h"
 #include "options.h"
@@ -477,4 +478,20 @@ bool Channel::write_seen_this_time( const MailboxMap&        deleted_mailboxes,
 
   mail_close(msinfo_stream);
   return 1;
+}
+
+//////////////////////////////////////////////////////////////////////////
+//
+void Channel::list_mailboxes()
+//
+// mailboxes must be open...
+//
+//////////////////////////////////////////////////////////////////////////
+{
+  printf(" All seen mailboxes: \n");
+  printf("  in first store: \n");
+  print_list_with_delimiter( this->store_a.boxes, stdout, " " );
+  printf("  in second store: \n");
+  print_list_with_delimiter( this->store_b.boxes, stdout, " " );
+  printf("\n");
 }

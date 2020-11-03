@@ -159,16 +159,8 @@ int main(const int argc, const char** argv)
 
   //////////////////////// mode_diff or mode_sync //////////////////////
 
-  // Display all the mailboxes we've found
   if (debug)
-  {
-    printf(" All seen mailboxes: \n");
-    printf("  in first store: \n");
-    print_list_with_delimiter( store_a.boxes, stdout, " " );
-    printf("  in second store: \n");
-    print_list_with_delimiter( store_b.boxes, stdout, " " );
-    printf("\n");
-  }
+    channel.list_mailboxes(); // Display all the mailboxes we've found
 
   // Read in what mailboxes and messages we've seen the last time
   // we've synchronized

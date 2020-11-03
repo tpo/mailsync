@@ -1,11 +1,11 @@
-#include "options.h"
+#include "options.h"       // options and default settings
 #include "utils.h"
 #include "store.h"
 #include "mail_handling.h"
 #include "types.h"         // Passwd, SUCCESS/FAILED
 #include <cassert>         // assert
 
-#include <iostream>     // only for debuging
+#include <iostream>        // only for debuging
 
 extern Store*        match_pattern_store;
 extern Passwd*       current_context_passwd;

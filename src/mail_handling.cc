@@ -16,7 +16,7 @@ extern Passwd*     current_context_passwd;
 //////////////////////////////////////////////////////////////////////////
 //
 void print_list_with_delimiter( const MsgIdSet& msgIds,
-                                FILE* f,
+                                FILE* where_to_output_to,
                                 const string& delim)
 //
 // Print the set of strings contained in "msgIds" and terminate each msgId
@@ -31,14 +31,17 @@ void print_list_with_delimiter( const MsgIdSet& msgIds,
           msgId++ )
     {
       tmp_msgId = *msgId;
-      fprintf(f, "%s%s", tmp_msgId.to_msinfo_format().c_str(), delim.c_str());
+      fprintf( where_to_output_to,
+               "%s%s",
+               tmp_msgId.to_msinfo_format().c_str(),
+               delim.c_str());
     }
 }
 
 //////////////////////////////////////////////////////////////////////////
 //
 void print_list_with_delimiter( const MailboxMap& mailboxes,
-                                FILE* f,
+                                FILE* where_to_output_to,
                                 const string& delim)
 //
 // Print the set of strings contained in "mailboxes" and terminate each
@@ -49,7 +52,10 @@ void print_list_with_delimiter( const MailboxMap& mailboxes,
     for (MailboxMap::const_iterator mailbox = mailboxes.begin() ;
          mailbox != mailboxes.end() ;
          mailbox++ ) {
-      fprintf(f, "%s%s", mailbox->first.c_str(), delim.c_str());
+      fprintf( where_to_output_to,
+               "%s%s",
+               mailbox->first.c_str(),
+               delim.c_str());
     }
 }
 

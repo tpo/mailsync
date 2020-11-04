@@ -30,7 +30,7 @@ class Channel
                                       MsgIdsPerMailbox&  thistime);
 
     bool open_for_copying   ( string             mailbox_name,
-		              enum direction_t   direction);
+                              enum direction_t   direction);
     bool copy_message       ( unsigned long      msgno,
                               const MsgId&       msgid,
                               string             mailbox_name,

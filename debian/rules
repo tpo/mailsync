@@ -14,17 +14,10 @@ export LIBDIRS := /lib/$(DEB_HOST_MULTIARCH)
 configure: configure-stamp
 configure-stamp:
 	dh_testdir
-	@# we need depcomp in order to be able to build
-	for i in / -1.4/ -1.5/ -1.6/ -1.7/ -1.11/ -1.16/; do                \
-	   if [ ! "$$found" = "1" -a -e /usr/share/automake$${i}depcomp ] ; \
-	    then                                                            \
-	     ln -s /usr/share/automake$${i}depcomp depcomp                ; \
-	     ln -s /usr/share/automake$${i}install-sh install-sh          ; \
-	     ln -s /usr/share/automake$${i}missing missing                ; \
-	     ln -s /usr/share/automake$${i}mkinstalldirs mkinstalldirs    ; \
-		 found=1                                                      ; \
-	   fi                                                             ; \
-	done
+	@# link `depcomp`, `install-sh` and `missing` that we need in
+	@# order to be able to build. `automake -a` is supported since
+	@# automake 1.5
+	automake -a
 
 	@# Add here commands to compile the package.
 	./configure --prefix=/usr

@@ -7,7 +7,7 @@ Maintainer: Tomas Pospisek <tpo_deb@sourcepole.ch>
 # libkrb5-dev see #768736
 # * automake < 1.17 because it's not tested with automat > 1.16 and
 #   debian/rules needs to be adapted
-Build-Depends: debhelper (>> 3.0.0), libc-client2007e-dev (>= 8:2007f~dfsg-1), automake (<< 1:1.17), dpkg-dev (>= 1.16.0), libkrb5-dev
+Build-Depends: debhelper (>> 3.0.0), libc-client2007e-dev (>= 8:2007f~dfsg-1), automake, dpkg-dev (>= 1.16.0), libkrb5-dev
 Standards-Version: 3.9.3.1
 Homepage: http://mailsync.sourceforge.net/
 

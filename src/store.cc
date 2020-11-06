@@ -1,4 +1,4 @@
-#include <stdio.h>             // printf
+#include <stdio.h>         // printf
 #include "options.h"       // options and default settings
 #include "utils.h"
 #include "store.h"         // Store
@@ -546,32 +546,33 @@ void Store::acquire_mailboxes_and_delimiter( /*in*/ const bool debug )
 
 //////////////////////////////////////////////////////////////////////////
 //
-bool Store::list_mails( const options_t* options ) {
+bool Store::list_mails( const options_t* options )
 //
 // returns:
 // * 0 on failure
 // * 1 on success
 //
 //////////////////////////////////////////////////////////////////////////
-    if ( options->show_from | options->show_message_id ) {
-      for ( MailboxMap::iterator curr_mbox = this->boxes.begin() ; 
-            curr_mbox != this->boxes.end() ;
-            curr_mbox++ )
-      {
-        printf("\nMailbox: %s\n", curr_mbox->first.c_str());
-        if( curr_mbox->second.no_select )
-          printf("  not selectable\n");
-        else {
-          // TODO: shouldn't this be OP_READONLY
-          this->stream = this->mailbox_open( curr_mbox->first, 0);
-          if (! this->stream) break;
-          if (! this->list_contents() )
-            return 0;
-        }
+{
+  if ( options->show_from | options->show_message_id ) {
+    for ( MailboxMap::iterator curr_mbox = this->boxes.begin() ; 
+          curr_mbox != this->boxes.end() ;
+          curr_mbox++ )
+    {
+      printf("\nMailbox: %s\n", curr_mbox->first.c_str());
+      if( curr_mbox->second.no_select )
+        printf("  not selectable\n");
+      else {
+        // TODO: shouldn't this be OP_READONLY
+        this->stream = this->mailbox_open( curr_mbox->first, 0);
+        if (! this->stream) break;
+        if (! this->list_contents() )
+          return 0;
       }
     }
-    else {
-      print_list_with_delimiter(this->boxes, stdout, "\n");
-    } 
-    return 1;
+  }
+  else {
+    print_list_with_delimiter(this->boxes, stdout, "\n");
+  } 
+  return 1;
 } 

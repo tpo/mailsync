@@ -5,7 +5,9 @@ Maintainer: Tomas Pospisek <tpo_deb@sourcepole.ch>
 # see #685897
 #Build-Depends: debhelper (>> 3.0.0), libc-client-dev | libc-client-ssl2001-dev, libc-client-dev | libkrb5-dev, automake1.11, dpkg-dev (>= 1.16.0)
 # libkrb5-dev see #768736
-Build-Depends: debhelper (>> 3.0.0), libc-client2007e-dev (>= 8:2007f~dfsg-1), automake1.11, dpkg-dev (>= 1.16.0), libkrb5-dev
+# * automake < 1.17 because it's not tested with automat > 1.16 and
+#   debian/rules needs to be adapted
+Build-Depends: debhelper (>> 3.0.0), libc-client2007e-dev (>= 8:2007f~dfsg-1), automake (<< 1:1.17), dpkg-dev (>= 1.16.0), libkrb5-dev
 Standards-Version: 3.9.3.1
 Homepage: http://mailsync.sourceforge.net/
 

@@ -1,3 +1,10 @@
+mailsync (5.2.6-1) unstable; urgency=low
+
+  * support automake1.16 (Closes: #865189)
+    - Thanks a lot Simon McVittie for reporting this!
+
+ -- Tomas Pospisek <tpo_deb@sourcepole.ch>  Fri, 06 Nov 2020 23:22:31 +0100
+
 mailsync (5.2.5-1) unstable; urgency=low
 
   * diff mode works again

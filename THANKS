@@ -30,6 +30,9 @@ Eric S. Johansson       automake problem on Gentoo and testing
 David Binderman         missing parameters in printfs in error messages
 Holger Krull            Courier config
 
+See also the debian/changelog file that contains further notes on
+people that helped. Thanks you!
+
 Current maintainer
 ------------------
-Tomas Pospisek          mailsync v4.2.1-now
+Tomas Pospisek          mailsync v4.2.1 - now

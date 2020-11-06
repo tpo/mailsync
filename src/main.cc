@@ -129,16 +129,12 @@ int main(const int argc, const char** argv)
     bool& debug = options.debug;
 
     if ( store_a.open_read_only_connection() == FAILED )
-    {
       exit(1);
-    }
 
     store_a.acquire_mailboxes_and_delimiter( debug );
 
     if ( store_b.open_read_only_connection() == FAILED )
-    {
       exit(1);
-    }
 
     // Get list of all mailboxes and delimiter from second store
     //

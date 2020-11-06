@@ -138,10 +138,8 @@ int main(const int argc, const char** argv)
 
   // Display listing of the first mail store in case we're in list mode
   if ( operation_mode == mode_list ) {
-    bool res;
-
-    res = store_a.list_mails( &options );
-    exit(!res);
+    store_a.list_mails( &options ) == SUCCESS ?
+      exit(0) : exit(1);
   }
 
   //////////////////////////////////////////////////////////////////////

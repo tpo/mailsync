@@ -548,9 +548,7 @@ void Store::acquire_mailboxes_and_delimiter( /*in*/ const bool debug )
 //
 bool Store::list_mails( const options_t* options )
 //
-// returns:
-// * 0 on failure
-// * 1 on success
+// returns: FAILED/SUCCESS
 //
 //////////////////////////////////////////////////////////////////////////
 {
@@ -567,12 +565,12 @@ bool Store::list_mails( const options_t* options )
         this->stream = this->mailbox_open( curr_mbox->first, 0);
         if (! this->stream) break;
         if (! this->list_contents() )
-          return 0;
+          return SUCCESS;
       }
     }
   }
   else {
     print_list_with_delimiter(this->boxes, stdout, "\n");
   } 
-  return 1;
+  return SUCCESS;
 } 

@@ -1,6 +1,6 @@
 mailsync (5.2.2-1) unstable; urgency=low
 
-  * Fix diff mode
+  * diff mode works again
 
  -- Tomas Pospisek <tpo_deb@sourcepole.ch>  Fri, 06 Nov 2020 22:55:14 +0100
 

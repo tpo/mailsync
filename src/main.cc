@@ -95,11 +95,6 @@ int main(const int argc, const char** argv)
   Channel channel;
   Store& store_a = channel.store_a;
   Store& store_b = channel.store_b;
-  MsgIdsPerMailbox lasttime, thistime;
-  MailboxMap deleted_mailboxes;   // present last time, but not this time
-  MailboxMap empty_mailboxes;
-  int success;
-  bool& debug = options.debug;
 
 #include "linkage.c"
 
@@ -145,6 +140,11 @@ int main(const int argc, const char** argv)
   }
   else // operation_mode == mode_sync || mode_diff
   {
+    MsgIdsPerMailbox lasttime, thistime;
+    MailboxMap deleted_mailboxes;   // present last time, but not this time
+    MailboxMap empty_mailboxes;
+    int success;
+    bool& debug = options.debug;
 
     //////////////////////////////////////////////////////////////////////
     //////////// from this point on we are only dealing with /////////////

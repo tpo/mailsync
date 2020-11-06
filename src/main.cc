@@ -114,9 +114,6 @@ int main(const int argc, const char** argv)
 
   // TODO: unify NIL / NULL 
 
-  ///////////////////////////// mode_list //////////////////////////////
-
-  // Display listing of the first mail store in case we're in list mode
   if ( operation_mode == mode_list ) {
 
     store_a.list_mails( &options ) == SUCCESS ?
@@ -142,13 +139,6 @@ int main(const int argc, const char** argv)
     {
       exit(1);
     }
-
-    //////////////////////////////////////////////////////////////////////
-    //////////// from this point on we are only dealing with /////////////
-    ////////////////// mode_diff or mode_sync ////////////////////////////
-    //////////////////////////////////////////////////////////////////////
-
-    ///////////////////////////// mode_sync //////////////////////////////
 
     // Get list of all mailboxes and delimiter from second store
     //

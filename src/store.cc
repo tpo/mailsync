@@ -552,6 +552,11 @@ bool Store::list_mails( const options_t* options )
 //
 //////////////////////////////////////////////////////////////////////////
 {
+  if ( this->open_read_only_connection() == FAILED )
+    return FAILED;
+
+  this->acquire_mailboxes_and_delimiter( options->debug );
+
   if ( options->show_from | options->show_message_id ) {
     for ( MailboxMap::iterator curr_mbox = this->boxes.begin() ; 
           curr_mbox != this->boxes.end() ;

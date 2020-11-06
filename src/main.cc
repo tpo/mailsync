@@ -112,22 +112,7 @@ int main(const int argc, const char** argv)
   // initialize c-client environment (~/.imparc etc.)
   env_init( getenv("USER"), getenv("HOME"));
 
-  if ( store_a.open_read_only_connection() == FAILED )
-  {
-    exit(1);
-  }
-
-  if (operation_mode == mode_sync || operation_mode == mode_diff )
-  {
-    if ( store_b.open_read_only_connection() == FAILED )
-    {
-      exit(1);
-    }
-  }
-
   // TODO: unify NIL / NULL 
-  
-  store_a.acquire_mailboxes_and_delimiter( debug );
 
   ///////////////////////////// mode_list //////////////////////////////
 
@@ -145,6 +130,18 @@ int main(const int argc, const char** argv)
     MailboxMap empty_mailboxes;
     int success;
     bool& debug = options.debug;
+
+    if ( store_a.open_read_only_connection() == FAILED )
+    {
+      exit(1);
+    }
+
+    store_a.acquire_mailboxes_and_delimiter( debug );
+
+    if ( store_b.open_read_only_connection() == FAILED )
+    {
+      exit(1);
+    }
 
     //////////////////////////////////////////////////////////////////////
     //////////// from this point on we are only dealing with /////////////

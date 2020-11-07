@@ -1,5 +1,6 @@
 #!/bin/bash
 
+script_args=("$@")
 # from where this script is ...
 source "$( dirname "$( realpath $0 )" )"/../lib/lib.sh
 

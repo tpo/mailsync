@@ -31,15 +31,14 @@ parse_args() {
   KEEP=
   NO_CHECK=
   
-  # iterate as long as there are params (due to set -u)
-  while ARGV=${1:-} && [ "$ARGV" != "" ]; do
-    case "$1" in
-      --debug)  DEBUG=-d            ; NO_CHECK=true; shift ;;
-      --strace) STRACE="strace -ff" ; NO_CHECK=true; shift ;;
-      --gdb)    GDB="gdb --args"    ; NO_CHECK=true; shift ;;
-      --keep)   KEEP="keep"         ;                shift ;;
-      --help)   help                ;;
-      *)        help                ;;
+  for arg in "${script_args[@]}"; do
+    case "$arg" in
+      --debug)  DEBUG=-d            ; NO_CHECK=true ;;
+      --strace) STRACE="strace -ff" ; NO_CHECK=true ;;
+      --gdb)    GDB="gdb --args"    ; NO_CHECK=true ;;
+      --keep)   KEEP="keep"                         ;;
+      --help)   help                                ;;
+      *)        help                                ;;
     esac
   done
   

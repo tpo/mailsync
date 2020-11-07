@@ -65,7 +65,9 @@ set_up_test_state() {
   HOME_DURING_TEST="$TMP_DIR"
   
   blackbox_dir="$HOME_DURING_TEST/mail"
-  cp -a mail.orig "$blackbox_dir"
+  mkdir "$blackbox_dir"
+  cp -a dir_with_mails_a "$blackbox_dir"/
+  cp -a dir_with_mails_b "$blackbox_dir"/
   
   mailsync_conf="$TMP_DIR/mailsync.conf"
   cp -a mailsync.conf "$mailsync_conf"

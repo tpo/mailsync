@@ -83,16 +83,51 @@ run_mailsync() {
   HOME="$HOME_DURING_TEST" $GDB $STRACE $mailsync $DEBUG -f "$mailsync_conf" "$@" | tee "$TMP_DIR/output"
 }
 
+verify_output_matches() {
+  local test_name="$( basename "$0" )"
+
+  echo
+  
+  if [ "$NO_CHECK" == "true" ]; then
+    echo "Not verifying test results because of given command line switch"
+  
+  else
+  
+    if diff -u "reference_output/${test_name}.output" "$TMP_DIR/output"; then
+      echo "Test successful"
+    else
+      echo "Test failed"
+    fi
+  fi
+}
+
 # cleanup everything that the test generated
 #
-# usage: cleanup "$KEEP" "$TMP_DIR
+# usage: clean_up
 #
 clean_up() {
-  local KEEP="$1"
-  local TMP_DIR="$2"
-
   if [ "$KEEP" != "keep" ]; then
     rm -r "$TMP_DIR"
   fi
 }
 
+# do before running mailsync
+#
+pre_run() {
+  set -e          # stop on error
+  set -o pipefail # stop part of pipeline failing
+  set -u          # stop on undefined variable
+  
+  # cd into where this script is
+  cd "$( dirname "$( realpath $0 )" )"
+
+  parse_args "$@"
+  set_up_test_state
+}
+
+# do after running mailsync
+#
+post_run() {
+  verify_output_matches
+  clean_up
+}

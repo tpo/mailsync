@@ -18,7 +18,7 @@ echo
 
 for scenario in scenario_* ; do
   echo "*************************** Running tests in scenario '$scenario'"
-  for tst in "$scenario/test_*.sh"; do
+  for tst in "$scenario"/test_*.sh; do
     echo "================= Running tests '$tst'"
 
     if [ "$QUIET" == "true" ]; then

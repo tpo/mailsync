@@ -1,9 +1,11 @@
 mailsync (5.2.6-1) unstable; urgency=low
 
   * support automake1.16 (Closes: #865189)
-    - Thanks a lot Simon McVittie for reporting this!
+    - Thanks a lot Simon McVittie for reporting this and extensive
+      explanation and pointers!
+  * add tests
 
- -- Tomas Pospisek <tpo_deb@sourcepole.ch>  Fri, 06 Nov 2020 23:22:31 +0100
+ -- Tomas Pospisek <tpo_deb@sourcepole.ch>  Sat, 07 Nov 2020 23:31:42 +0100
 
 mailsync (5.2.5-1) unstable; urgency=low
 

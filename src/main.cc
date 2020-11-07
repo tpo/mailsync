@@ -109,7 +109,7 @@ int main(const int argc, const char** argv)
   store_a.boxes.clear();
   store_b.boxes.clear();
 
-  // initialize c-client environment (~/.imparc etc.)
+  // initialize c-client environment (~/.imaprc etc.)
   env_init( getenv("USER"), getenv("HOME"));
 
   // TODO: unify NIL / NULL 

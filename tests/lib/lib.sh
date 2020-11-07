@@ -104,9 +104,9 @@ verify_output_matches_this() {
   else
   
     if diff -u "expected_output/$output_file" "$TMP_DIR/output"; then
-      echo "Test successful"
+      echo "-------- Output matched expected output"
     else
-      echo "Test failed"
+      echo "-------- Output did NOT match expected output"
     fi
   fi
 }

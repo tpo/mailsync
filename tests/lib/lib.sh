@@ -92,7 +92,7 @@ verify_output_matches() {
 
 # usage: verify_output_matches_this NAME_OF_FILE
 #
-# FILE has to be inside `reference_output/`
+# FILE has to be inside `expected_output/`
 #
 verify_output_matches_this() {
   local output_file="$1"
@@ -103,7 +103,7 @@ verify_output_matches_this() {
   
   else
   
-    if diff -u "reference_output/$output_file" "$TMP_DIR/output"; then
+    if diff -u "expected_output/$output_file" "$TMP_DIR/output"; then
       echo "Test successful"
     else
       echo "Test failed"

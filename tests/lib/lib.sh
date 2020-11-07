@@ -85,6 +85,15 @@ run_mailsync() {
 verify_output_matches() {
   local test_name="$( basename "$0" )"
 
+  verify_output_matches_this "${test_name}.output"
+}
+
+# usage: verify_output_matches_this NAME_OF_FILE
+#
+# FILE has to be inside `reference_output/`
+#
+verify_output_matches_this() {
+  local output_file="$1"
   echo
   
   if [ "$NO_CHECK" == "true" ]; then
@@ -92,7 +101,7 @@ verify_output_matches() {
   
   else
   
-    if diff -u "reference_output/${test_name}.output" "$TMP_DIR/output"; then
+    if diff -u "reference_output/$output_file" "$TMP_DIR/output"; then
       echo "Test successful"
     else
       echo "Test failed"

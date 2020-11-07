@@ -1,0 +1,12 @@
+From MAILER-DAEMON Sat Nov  7 09:58:19 2020
+Date: 07 Nov 2020 09:58:19 +0100
+From: Mail System Internal Data <MAILER-DAEMON@example.org>
+Subject: DON'T DELETE THIS MESSAGE -- FOLDER INTERNAL DATA
+X-IMAP: 1604739499 0000000000
+Status: RO
+
+This text is part of the internal format of your mail folder, and is not
+a real message.  It is created automatically by the mail system software.
+If deleted, important folder data will be lost, and it will be re-created
+with the data reset to initial values.
+

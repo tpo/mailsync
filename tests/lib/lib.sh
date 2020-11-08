@@ -105,8 +105,10 @@ verify_output_matches_this() {
   
     if diff -u "expected_output/$output_file" "$TMP_DIR/output"; then
       echo "-------- Output matched expected output"
+      return 0
     else
       echo "-------- Output did NOT match expected output"
+      return 1
     fi
   fi
 }

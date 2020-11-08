@@ -432,7 +432,7 @@ char* Store::driver_name()
     drv = mail_valid( this->stream, "", NIL);
   else
     drv = mail_valid( this->stream,
-                      nccs( full_mailbox_name( boxes.begin()->first) ),
+                      nccs( full_mailbox_name( mailbox_name(boxes.begin()) ) ),
                       NIL);
   if (drv)
     return drv->name;
@@ -570,12 +570,12 @@ bool Store::list( const bool debug,
             curr_mbox != this->boxes.end() ;
             curr_mbox++ )
       {
-        printf("\nMailbox: %s\n", curr_mbox->first.c_str());
-        if( curr_mbox->second.no_select )
+        printf("\nMailbox: %s\n", mailbox_name(curr_mbox).c_str());
+        if( mailbox_properties(curr_mbox).no_select )
           printf("  not selectable\n");
         else {
           // TODO: shouldn't this be OP_READONLY
-          this->stream = this->mailbox_open( curr_mbox->first, 0);
+          this->stream = this->mailbox_open( mailbox_name(curr_mbox), 0);
           if (! this->stream) break;
           if (this->list_mails_in_current_mailbox() == FAILED)
             return_status = FAILED;

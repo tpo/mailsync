@@ -168,43 +168,43 @@ int main(const int argc, const char** argv)
       }
 
       // skip if the current mailbox has allready been synched
-      if ( curr_mbox->second.done)
+      if ( mailbox_properties(curr_mbox).done)
         continue;
       
       // if mailbox doesn't exist in either one of the stores -> create it
-      if ( store_a.boxes.find( curr_mbox->first ) == store_a.boxes.end() )
-        if ( ! store_a.mailbox_create( curr_mbox->first ) )
+      if ( store_a.boxes.find( mailbox_name(curr_mbox) ) == store_a.boxes.end() )
+        if ( ! store_a.mailbox_create( mailbox_name(curr_mbox) ) )
           continue;
-      if ( store_b.boxes.find( curr_mbox->first ) == store_b.boxes.end() )
-        if ( ! store_b.mailbox_create( curr_mbox->first ) )
+      if ( store_b.boxes.find( mailbox_name(curr_mbox) ) == store_b.boxes.end() )
+        if ( ! store_b.mailbox_create( mailbox_name(curr_mbox) ) )
           continue;
 
       // when traversing store_a's boxes we don't need to worry about
       // whether it has been synched yet or not.  It isn't unless we're
       // in store_b that it matters whether the current mailbox has been
       // traversed in store_a allready
-      store_b.boxes.find(curr_mbox->first)->second.done = true;
+      mailbox_properties(store_b.boxes.find(mailbox_name(curr_mbox))).done = true;
 
       // skip unselectable (== can't contain mails) boxes
-      if ( store_a.boxes.find( curr_mbox->first )->second.no_select ) {
+      if ( mailbox_properties(store_a.boxes.find( mailbox_name(curr_mbox) )).no_select ) {
         if ( debug )
-          printf( "%s is not selectable: skipping\n", curr_mbox->first.c_str() );
+          printf( "%s is not selectable: skipping\n", mailbox_name(curr_mbox).c_str() );
         continue;
       }
-      if ( store_b.boxes.find( curr_mbox->first )->second.no_select ) {
+      if ( mailbox_properties(store_b.boxes.find( mailbox_name(curr_mbox) )).no_select ) {
         if ( debug )
-          printf( "%s is not selectable: skipping\n", curr_mbox->first.c_str() );
+          printf( "%s is not selectable: skipping\n", mailbox_name(curr_mbox).c_str() );
         continue;
       }
 
       if (options.show_from)
-        printf("\n *** %s ***\n", curr_mbox->first.c_str());
+        printf("\n *** %s ***\n", mailbox_name(curr_mbox).c_str());
 
-      MsgIdSet msgids_lasttime( lasttime[curr_mbox->first] ), msgids_union, msgids_now;
+      MsgIdSet msgids_lasttime( lasttime[mailbox_name(curr_mbox)] ), msgids_union, msgids_now;
       MsgIdPositions msgidpos_a, msgidpos_b;
 
       if (options.show_summary) {
-        printf("%s: ",curr_mbox->first.c_str());
+        printf("%s: ", mailbox_name(curr_mbox).c_str());
         fflush(stdout);
       }
       else {
@@ -223,28 +223,28 @@ int main(const int argc, const char** argv)
       MsgIdSet remove_a, remove_b;
 
       // open and fetch message ID's from the mailbox in the first store
-      store_a.stream = store_a.mailbox_open( curr_mbox->first, OP_READONLY );
+      store_a.stream = store_a.mailbox_open( mailbox_name(curr_mbox), OP_READONLY );
       if (! store_a.stream)
       {
-        store_a.print_error( "opening and writing", curr_mbox->first);
+        store_a.print_error( "opening and writing", mailbox_name(curr_mbox));
         continue;
       }
       if (! store_a.fetch_message_ids( msgidpos_a , remove_a) )
       {
-        store_a.print_error( "fetching of mail ids", curr_mbox->first);
+        store_a.print_error( "fetching of mail ids", mailbox_name(curr_mbox));
         continue;
       }
 
       // if we're in sync mode open and fetch message IDs from the
       // mailbox in the second store
       if( operation_mode == mode_sync ) {
-        store_b.stream = store_b.mailbox_open( curr_mbox->first, OP_READONLY);
+        store_b.stream = store_b.mailbox_open( mailbox_name(curr_mbox), OP_READONLY);
         if (! store_b.stream) {
-          store_b.print_error( "fetching of mail ids", curr_mbox->first);
+          store_b.print_error( "fetching of mail ids", mailbox_name(curr_mbox));
           continue;
         }
         if (! store_b.fetch_message_ids( msgidpos_b, remove_b )) {
-          store_b.print_error( "fetching of mail ids", curr_mbox->first);
+          store_b.print_error( "fetching of mail ids", mailbox_name(curr_mbox));
           continue;
         }
       } else if( operation_mode == mode_diff ) {
@@ -351,11 +351,11 @@ int main(const int argc, const char** argv)
             printf( " Copying messages from store \"%s\" to store \"%s\"\n",
                     store_a.name.c_str(), store_b.name.c_str() );
 
-          if (! channel.open_for_copying( curr_mbox->first, a_to_b) )
+          if (! channel.open_for_copying( mailbox_name(curr_mbox), a_to_b) )
             exit(1);
           for ( MsgIdSet::iterator i =copy_a_b.begin(); i !=copy_a_b.end(); i++) {
             success = channel.copy_message( msgidpos_a[*i], *i,
-                                            curr_mbox->first, a_to_b );
+                                            mailbox_name(curr_mbox), a_to_b );
             if (success) copied_a_b++;
             else         msgids_now.erase(*i);
             // if we've failed to copy the message over we'll pretend that we
@@ -367,11 +367,11 @@ int main(const int argc, const char** argv)
             printf( " Copying messages from store \"%s\" to store \"%s\"\n",
                     store_b.name.c_str(), store_a.name.c_str() );
 
-          if (! channel.open_for_copying( curr_mbox->first, b_to_a) )
+          if (! channel.open_for_copying( mailbox_name(curr_mbox), b_to_a) )
             exit(1);
           for ( MsgIdSet::iterator i=copy_b_a.begin(); i !=copy_b_a.end(); i++) {
             success = channel.copy_message( msgidpos_b[*i], *i,
-                                            curr_mbox->first, b_to_a );
+                                            mailbox_name(curr_mbox), b_to_a );
             if (success) copied_b_a++;
             else         msgids_now.erase(*i);
           }
@@ -390,7 +390,7 @@ int main(const int argc, const char** argv)
             fflush(stdout);
           } else {
             printf( "%lu messages remain in %s\n",
-                    now_n, curr_mbox->first.c_str() );
+                    now_n, mailbox_name(curr_mbox).c_str() );
           }
 
           //////////////////// removing messages ///////////////////////
@@ -402,10 +402,10 @@ int main(const int argc, const char** argv)
 
             // TODO: check first if there are any messages to be removed before
             //       opening
-            store_a.stream = store_a.mailbox_open( curr_mbox->first, 0 );
+            store_a.stream = store_a.mailbox_open( mailbox_name(curr_mbox), 0 );
             if (! store_a.stream)
             {
-              store_a.print_error( "opening for removal ", curr_mbox->first);
+              store_a.print_error( "opening for removal ", mailbox_name(curr_mbox));
             }
             else
               for( MsgIdSet::iterator i =remove_a.begin(); i !=remove_a.end(); i++) {
@@ -418,10 +418,10 @@ int main(const int argc, const char** argv)
 
             // TODO: check first if there are any messages to be removed before
             //       opening
-            store_b.stream = store_b.mailbox_open( curr_mbox->first, 0 );
+            store_b.stream = store_b.mailbox_open( mailbox_name(curr_mbox), 0 );
             if (! store_b.stream)
             {
-              store_a.print_error( "opening for removal ", curr_mbox->first);
+              store_a.print_error( "opening for removal ", mailbox_name(curr_mbox));
             }
             else
               for( MsgIdSet::iterator i =remove_b.begin(); i !=remove_b.end(); i++) {
@@ -438,8 +438,8 @@ int main(const int argc, const char** argv)
           
             if (debug) printf( " Expunging messages\n" );
 
-            int n_expunged_a = store_a.mailbox_expunge( curr_mbox->first );
-            int n_expunged_b = store_b.mailbox_expunge( curr_mbox->first );
+            int n_expunged_a = store_a.mailbox_expunge( mailbox_name(curr_mbox) );
+            int n_expunged_b = store_b.mailbox_expunge( mailbox_name(curr_mbox) );
             if (n_expunged_a) printf( "Expunged %d mail%s in store %s\n"
                                     , n_expunged_a
                                     , n_expunged_a == 1 ? "" : "s"
@@ -455,8 +455,8 @@ int main(const int argc, const char** argv)
           if (options.delete_empty_mailboxes) {
             if (now_n == 0) {
               // add empty mailbox to empty_mailboxes
-              empty_mailboxes[ curr_mbox->first ];
-              deleted_mailboxes[ curr_mbox->first ];
+              empty_mailboxes[ mailbox_name(curr_mbox) ];
+              deleted_mailboxes[ mailbox_name(curr_mbox) ];
             }
           }
         } // end case mode_sync
@@ -479,7 +479,7 @@ int main(const int argc, const char** argv)
         break;
       }
 
-      thistime[curr_mbox->first] = msgids_now;
+      thistime[mailbox_name(curr_mbox)] = msgids_now;
 
 //   TODO: why do we want to close the boxes?
 //   instead of expunging emails we could also use mail_open(OP_EXPUNGE) instead...
@@ -519,8 +519,8 @@ int main(const int argc, const char** argv)
             mailbox != empty_mailboxes.end() ;
             mailbox++ )
       {
-        fullboxname = store_a.full_mailbox_name( mailbox->first);
-        printf("%s: deleting\n", mailbox->first.c_str());
+        fullboxname = store_a.full_mailbox_name( mailbox_name(mailbox));
+        printf("%s: deleting\n", mailbox_name(mailbox).c_str());
         printf("  %s", fullboxname.c_str());
         fflush(stdout);
         current_context_passwd = &(store_a.passwd);
@@ -528,7 +528,7 @@ int main(const int argc, const char** argv)
           printf("\n");
         else
           printf(" failed\n");
-        fullboxname = store_b.full_mailbox_name( mailbox->first);
+        fullboxname = store_b.full_mailbox_name( mailbox_name(mailbox));
         printf("  %s", fullboxname.c_str());
         fflush(stdout);
         current_context_passwd = &(store_b.passwd);

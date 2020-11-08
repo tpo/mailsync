@@ -56,7 +56,7 @@ void print_list_with_delimiter( const MailboxMap& mailboxes,
          mailbox++ ) {
       fprintf( where_to_output_to,
                "%s%s",
-               mailbox->first.c_str(),
+               mailbox_name(mailbox).c_str(),
                delim.c_str());
     }
 }

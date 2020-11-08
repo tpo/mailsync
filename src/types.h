@@ -52,5 +52,10 @@ typedef map<MsgId, unsigned long> MsgIdPositions;  // Map message ids to
 typedef map<string, MsgIdSet> MsgIdsPerMailbox;     // A List of message ids
                                                     // per mailbox(-name)
 
+typedef MailboxMap::iterator MailboxMapEntry;
+
+#define mailbox_name(_MailboxMapEntry) ((_MailboxMapEntry)->first)
+#define mailbox_properties(_MailboxMapEntry) ((_MailboxMapEntry)->second)
+
 #define __MAILSYNC_TYPES__
 #endif

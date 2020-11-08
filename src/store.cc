@@ -310,7 +310,6 @@ bool Store::list_contents()
 // returns:
 //              0                    - failure
 //              1                    - success
-//              mailbox_stream       - a stream "to" the mailbox
 //
 // This was copied from fetch_message_ids
 //

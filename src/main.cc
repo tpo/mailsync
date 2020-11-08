@@ -116,7 +116,7 @@ int main(const int argc, const char** argv)
 
   if ( operation_mode == mode_list ) {
 
-    store_a.list_mails( &options ) == SUCCESS ?
+    store_a.list( &options ) == SUCCESS ?
       exit(0) : exit(1);
 
   }

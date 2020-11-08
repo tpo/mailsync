@@ -543,7 +543,11 @@ void Store::acquire_mailboxes_and_delimiter( /*in*/ const bool debug )
 
 //////////////////////////////////////////////////////////////////////////
 //
-bool Store::list_mails( const options_t* options )
+bool Store::list( const options_t* options )
+//
+// Will list all mailboxes contained inside the store and the mails
+// contained in them, if options->show_from or options->show_message_id
+// is true.
 //
 // returns: FAILED/SUCCESS
 //

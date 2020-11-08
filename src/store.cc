@@ -307,9 +307,7 @@ bool Store::list_contents()
 // The mailbox is defined by the name in "box" and by the "store" where the
 // mailbox resides
 //
-// returns:
-//              0                    - failure
-//              1                    - success
+// returns: FAILED/SUCCESS
 //
 // This was copied from fetch_message_ids
 //
@@ -332,7 +330,7 @@ bool Store::list_contents()
                msgno, this->stream->mailbox);
       fprintf( stderr,
                "       Aborting!\n");
-      return 0;
+      return FAILED;
     }
     msgid = MsgId(envelope);
     if (msgid.length() == 0)
@@ -350,7 +348,7 @@ bool Store::list_contents()
     print_from( this->stream, msgno );
     printf( "\n");
   }
-  return 1;
+  return SUCCESS;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -551,30 +549,34 @@ bool Store::list_mails( const options_t* options )
 //
 //////////////////////////////////////////////////////////////////////////
 {
-  if ( this->open_read_only_connection() == FAILED )
-    return FAILED;
+  bool return_status = SUCCESS;
 
-  this->acquire_mailboxes_and_delimiter( options->debug );
-
-  if ( options->show_from | options->show_message_id ) {
-    for ( MailboxMap::iterator curr_mbox = this->boxes.begin() ; 
-          curr_mbox != this->boxes.end() ;
-          curr_mbox++ )
-    {
-      printf("\nMailbox: %s\n", curr_mbox->first.c_str());
-      if( curr_mbox->second.no_select )
-        printf("  not selectable\n");
-      else {
-        // TODO: shouldn't this be OP_READONLY
-        this->stream = this->mailbox_open( curr_mbox->first, 0);
-        if (! this->stream) break;
-        if (! this->list_contents() )
-          return SUCCESS;
-      }
-    }
+  if ( this->open_read_only_connection() == FAILED ) {
+    return_status = FAILED;
   }
   else {
-    print_list_with_delimiter(this->boxes, stdout, "\n");
-  } 
-  return SUCCESS;
+    this->acquire_mailboxes_and_delimiter( options->debug );
+
+    if ( options->show_from | options->show_message_id ) {
+      for ( MailboxMap::iterator curr_mbox = this->boxes.begin() ; 
+            curr_mbox != this->boxes.end() ;
+            curr_mbox++ )
+      {
+        printf("\nMailbox: %s\n", curr_mbox->first.c_str());
+        if( curr_mbox->second.no_select )
+          printf("  not selectable\n");
+        else {
+          // TODO: shouldn't this be OP_READONLY
+          this->stream = this->mailbox_open( curr_mbox->first, 0);
+          if (! this->stream) break;
+          if (this->list_contents() == FAILED)
+            return_status = FAILED;
+        }
+      }
+    }
+    else {
+      print_list_with_delimiter(this->boxes, stdout, "\n");
+    } 
+  }
+  return return_status;
 } 

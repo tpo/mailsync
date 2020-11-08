@@ -51,9 +51,9 @@ void mm_list ( MAILSTREAM *stream, int delimiter, char *name_nc,
       fputs (stream->mailbox, stdout);
     if (name) fputs(name, stdout);
     if (attributes & LATT_NOINFERIORS) fputs (", no inferiors",stdout);
-    if (attributes & LATT_NOSELECT) fputs (", no select",stdout);
-    if (attributes & LATT_MARKED) fputs (", marked",stdout);
-    if (attributes & LATT_UNMARKED) fputs (", unmarked",stdout);
+    if (attributes & LATT_NOSELECT)    fputs (", no select",stdout);
+    if (attributes & LATT_MARKED)      fputs (", marked",stdout);
+    if (attributes & LATT_UNMARKED)    fputs (", unmarked",stdout);
     putchar ('\n');
   }
 

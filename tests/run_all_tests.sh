@@ -22,13 +22,14 @@ echo
 
 for scenario in scenario_* ; do
   echo "*************************** Running tests in scenario '$scenario'"
-  for tst in "$scenario"/test_*.sh; do
+  cd "$scenario"
+  for tst in test_*.sh; do
     echo "================= Running tests '$tst'"
 
     if [ "$QUIET" == "true" ]; then
-      $tst > /dev/null
+      ./$tst > /dev/null
     else
-      $tst
+      ./$tst
     fi
 
     if [ "$?" == "0" ]; then
@@ -37,4 +38,5 @@ for scenario in scenario_* ; do
       printf "================= ${RED}Failed${NC}: '$tst'\n"
     fi
   done
+  cd ..
 done

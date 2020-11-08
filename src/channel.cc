@@ -163,14 +163,14 @@ bool Channel::read_seen_last_time( MsgIdsPerMailbox&  mids_per_box,
   
   if ( options.debug ) {
     printf( "   Store %s:\n", store_a.name.c_str() );
-    for ( MailboxMap::iterator box = store_a.boxes.begin();
+    for ( MailboxMap::const_iterator box = store_a.boxes.begin();
           box!=store_a.boxes.end(); box++ ) {
       printf( "    %s(%d) \n",
               mailbox_name(box).c_str(), mids_per_box[mailbox_name(box)].size() );
     }
     printf( "\n" );
     printf( "   Store %s:\n", store_b.name.c_str() );
-    for ( MailboxMap::iterator box = store_b.boxes.begin();
+    for ( MailboxMap::const_iterator box = store_b.boxes.begin();
           box!=store_b.boxes.end(); box++ ) {
       printf( "    %s(%d) \n",
               mailbox_name(box).c_str(), mids_per_box[mailbox_name(box)].size() );

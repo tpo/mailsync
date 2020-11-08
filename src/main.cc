@@ -515,7 +515,7 @@ int main(const int argc, const char** argv)
       } else {
         store_b.stream = NULL;
       }
-      for ( MailboxMap::iterator mailbox = empty_mailboxes.begin() ; 
+      for ( MailboxMap::const_iterator mailbox = empty_mailboxes.begin() ;
             mailbox != empty_mailboxes.end() ;
             mailbox++ )
       {

@@ -566,7 +566,7 @@ bool Store::list( const bool debug,
 
     // list each mailbox and the mails contained therein
     if ( show_from | show_message_id ) {
-      for ( MailboxMap::iterator curr_mbox = this->boxes.begin() ; 
+      for ( MailboxMap::const_iterator curr_mbox = this->boxes.begin() ;
             curr_mbox != this->boxes.end() ;
             curr_mbox++ )
       {

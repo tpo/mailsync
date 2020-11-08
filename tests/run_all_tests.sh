@@ -14,6 +14,10 @@ help() {
 [ "$1" == "--help"  ] && help
 [ "$1" == "--quiet" ] && QUIET=true
 
+RED='\033[0;31m'
+GRN='\033[0;32m'
+NC='\033[0m' # No Color
+
 echo
 
 for scenario in scenario_* ; do
@@ -28,9 +32,9 @@ for scenario in scenario_* ; do
     fi
 
     if [ "$?" == "0" ]; then
-      echo "================= Success: '$tst'"
+      printf "================= ${GRN}Success${NC}: '$tst'\n"
     else
-      echo "================= Failed: '$tst'"
+      printf "================= ${RED}Failed${NC}: '$tst'\n"
     fi
   done
 done

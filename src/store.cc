@@ -3,13 +3,14 @@
 #include "utils.h"
 #include "store.h"         // Store
 #include "mail_handling.h"
-#include "types.h"         // MailboxMap, Passwd, SUCCESS/FAILED
+#include "types.h"         // MailboxMap, SUCCESS/FAILED
+#include "password.h"      // Password
 #include <cassert>         // assert
 
 #include <iostream>        // only for debuging
 
 extern Store*        match_pattern_store;
-extern Passwd*       current_context_passwd;
+extern Password*     current_context_passwd;
 extern enum operation_mode_t operation_mode;
 extern options_t options;
 extern int expunged_mails;

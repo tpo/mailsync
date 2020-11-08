@@ -3,6 +3,7 @@
 #include "utils.h"
 #include "options.h"
 #include "types.h"
+#include "password.h"
 #include "mail_handling.h"
 #include "c-client-header.h"
 #include "msgstring.h"
@@ -11,7 +12,7 @@
 #include <cassert>
 #include <errno.h>
 
-extern Passwd*     current_context_passwd;
+extern Password* current_context_passwd;
 extern options_t options;
 
 void Channel::print(FILE* f) {

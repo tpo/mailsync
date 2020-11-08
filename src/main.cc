@@ -25,7 +25,8 @@ using std::make_pair;
 #include "configuration.h"       // configuration parsing and setup
 #include "options.h"             // options and default settings
 #include "commandline.h"         // commandline parsing
-#include "types.h"               // MailboxMap, Passwd
+#include "types.h"               // MailboxMap
+#include "password.h"            // Password
 #include "store.h"               // Store
 #include "channel.h"             // Channel
 #include "mail_handling.h"       // functions implementing various
@@ -55,7 +56,7 @@ Store*       match_pattern_store;
 // The password for the current context
 // Required, because we don't know inside the c-client callback functions
 // which context (store1, store2, channel) we are in
-Passwd * current_context_passwd = NULL;
+Password * current_context_passwd = NULL;
 //////////////////////////////////////////////////////////////////////////
 
 bool parse_arguments_read_config_file_choose_operation_mode( /*in*/  const int    argc,

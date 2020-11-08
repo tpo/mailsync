@@ -2,7 +2,8 @@
 
 #include <stdio.h>
 #include <string>
-#include "types.h"      // Passwd
+#include "types.h"
+#include "password.h"   // Password
 #include "store.h"
 
 enum direction_t { a_to_b, b_to_a };
@@ -45,7 +46,7 @@ class Channel
     Store          store_a;
     Store          store_b;
     string         msinfo;
-    Passwd         passwd;
+    Password       passwd;
     unsigned long  sizelimit;
 };
 

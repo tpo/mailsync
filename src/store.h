@@ -6,6 +6,7 @@
 #include <set>
 #include "c-client-header.h"
 #include "types.h"
+#include "password.h"
 #include "msgid.h"
 #include "options.h"           // options and default settings
 
@@ -24,7 +25,7 @@ class Store
            ref,
            pat;
 
-    Passwd passwd;
+    Password passwd;
     int isremote;                  // I.e. allows OP_HALFOPEN
     int delim;
 

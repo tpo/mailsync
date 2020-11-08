@@ -17,11 +17,12 @@
 
 #include "options.h"
 #include "types.h"
+#include "password.h"
 #include "store.h"
 
 extern options_t options;
-extern Store*      match_pattern_store;
-extern Passwd*     current_context_passwd;
+extern Store*    match_pattern_store;
+extern Password* current_context_passwd;
 
 // Flag saying in critical code
 int critical = NIL;

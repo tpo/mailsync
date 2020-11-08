@@ -52,21 +52,5 @@ typedef map<MsgId, unsigned long> MsgIdPositions;  // Map message ids to
 typedef map<string, MsgIdSet> MsgIdsPerMailbox;     // A List of message ids
                                                     // per mailbox(-name)
 
-//////////////////////////////////////////////////////////////////////////
-//
-class Passwd
-//
-// Structure that holds the password
-//
-//////////////////////////////////////////////////////////////////////////
-{
-  public:
-    bool nopasswd;
-    string text;
-
-    void clear();
-    void set_passwd(string passwd);
-};
-
 #define __MAILSYNC_TYPES__
 #endif

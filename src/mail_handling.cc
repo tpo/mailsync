@@ -3,12 +3,14 @@
 #include "c-client-header.h"
 #include "options.h"
 #include "types.h"
+#include "password.h"
 #include "msgstring.h"
 #include "utils.h"
 #include "flstring.h"
 
 extern options_t options;
-extern Passwd*     current_context_passwd;
+// TODO: do we need current_context_passwd here?
+extern Password*   current_context_passwd;
 
 //------------------------- Helper functions -----------------------------
 

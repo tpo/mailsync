@@ -56,7 +56,9 @@ class Store
     int   mailbox_expunge( string mailbox_name);
     bool  open_read_only_connection();
     void  acquire_mailboxes_and_delimiter( const bool debug);
-    bool  list( const options_t* options);
+    bool  list( const bool debug,
+                const bool show_from,
+                const bool show_message_id );
 };
 
 #define __MAILSYNC_STORE__

@@ -543,7 +543,9 @@ void Store::acquire_mailboxes_and_delimiter( /*in*/ const bool debug )
 
 //////////////////////////////////////////////////////////////////////////
 //
-bool Store::list( const options_t* options )
+bool Store::list( const bool debug,
+                  const bool show_from,
+                  const bool show_message_id )
 //
 // Will list all mailboxes contained inside the store and the mails
 // contained in them, if options->show_from or options->show_message_id
@@ -559,9 +561,9 @@ bool Store::list( const options_t* options )
     return_status = FAILED;
   }
   else {
-    this->acquire_mailboxes_and_delimiter( options->debug );
+    this->acquire_mailboxes_and_delimiter( debug );
 
-    if ( options->show_from | options->show_message_id ) {
+    if ( show_from | show_message_id ) {
       for ( MailboxMap::iterator curr_mbox = this->boxes.begin() ; 
             curr_mbox != this->boxes.end() ;
             curr_mbox++ )

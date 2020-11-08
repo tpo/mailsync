@@ -116,7 +116,9 @@ int main(const int argc, const char** argv)
 
   if ( operation_mode == mode_list ) {
 
-    store_a.list( &options ) == SUCCESS ?
+    store_a.list( options.debug,
+                  options.show_from, 
+                  options.show_message_id ) == SUCCESS ?
       exit(0) : exit(1);
 
   }

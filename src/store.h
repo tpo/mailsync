@@ -44,7 +44,7 @@ class Store
     void   get_delim();
     string full_mailbox_name( const string& box);
     bool   fetch_message_ids( MsgIdPositions& mids, MsgIdSet& remove_set);
-    bool   list_contents();
+    bool   list_mails_in_current_mailbox();
     bool   flag_message_for_removal( unsigned long msgno, const MsgId& msgid,
                                      char const * place);
     MAILSTREAM* mailbox_open( const string& boxname, long c_client_options);

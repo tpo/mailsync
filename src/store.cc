@@ -300,7 +300,7 @@ bool Store::fetch_message_ids(MsgIdPositions& mids, MsgIdSet& remove_set)
 
 //////////////////////////////////////////////////////////////////////////
 //
-bool Store::list_contents()
+bool Store::list_mails_in_current_mailbox()
 //
 // Display contents of currently open mailbox
 // 
@@ -576,7 +576,7 @@ bool Store::list( const bool debug,
           // TODO: shouldn't this be OP_READONLY
           this->stream = this->mailbox_open( curr_mbox->first, 0);
           if (! this->stream) break;
-          if (this->list_contents() == FAILED)
+          if (this->list_mails_in_current_mailbox() == FAILED)
             return_status = FAILED;
         }
       }

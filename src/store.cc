@@ -563,6 +563,7 @@ bool Store::list( const bool debug,
   else {
     this->acquire_mailboxes_and_delimiter( debug );
 
+    // list each mailbox and the mails contained therein
     if ( show_from | show_message_id ) {
       for ( MailboxMap::iterator curr_mbox = this->boxes.begin() ; 
             curr_mbox != this->boxes.end() ;
@@ -580,6 +581,7 @@ bool Store::list( const bool debug,
         }
       }
     }
+    // only list mailbox names
     else {
       print_list_with_delimiter(this->boxes, stdout, "\n");
     } 

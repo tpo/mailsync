@@ -1,0 +1,45 @@
+From MAILER-DAEMON Sat Nov  7 09:58:19 2020
+Date: 07 Nov 2020 09:58:19 +0100
+From: Mail System Internal Data <MAILER-DAEMON@example.org>
+Subject: DON'T DELETE THIS MESSAGE -- FOLDER INTERNAL DATA
+Message-ID: <1604739106@example.org>
+X-IMAP: 1604739499 0000000000
+Status: RO
+
+This text is part of the internal format of your mail folder, and is not
+a real message.  It is created automatically by the mail system software.
+If deleted, important folder data will be lost, and it will be re-created
+with the data reset to initial values.
+
+From microsoft@example.org Sat Nov  7 06:26:34 2020 +0100
+Return-path: <microsoft@example.org>
+Envelope-to: tpo@example.org
+Delivery-date: Sat, 07 Nov 2020 06:26:34 +0100
+Received: from hostie.example.org ([144.76.60.236] helo=example.org)
+	by mta-host with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.94)
+	(envelope-from <microsoft@example.org>)
+	id 1kbGkE-00033B-0D
+	for tpo@example.org; Sat, 07 Nov 2020 06:26:34 +0100
+Received: (nullmailer pid 28609 invoked by uid 0);
+	Sat, 07 Nov 2020 05:26:33 -0000
+From: microsoft@example.org (some microsoft mail processing software)
+To: tpo@example.org
+Subject: Mail with newline in Message-Id
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Cron-Env: <SHELL=/bin/sh>
+X-Cron-Env: <PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin>
+X-Cron-Env: <HOME=/root>
+X-Cron-Env: <LOGNAME=root>
+Date: Sat, 07 Nov 2020 06:26:33 +0100
+Message-ID: <2732c0a646434835942d020ffffd20f5@GV0P278MB0002.CHEP278.PROD.OUTLOOK.COM>
+Status: R
+X-Status: 
+X-Keywords:                  
+X-UID: 1
+
+I have seen emails from microsoft email software with
+"folded" Message-IDs.
+

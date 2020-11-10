@@ -1,0 +1,4 @@
+# options for `dpkg-source --build`
+
+# exclude standard stuff, such as in particular ~/.git
+tar-ignore

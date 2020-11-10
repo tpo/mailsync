@@ -1,10 +1,12 @@
-mailsync (5.2.7-1) unstable; urgency=low
+mailsync (5.2.7-2) unstable; urgency=low
 
   * support syncing mails from Microsoft's mail software that
     generates folded Message-ID fields with a linefeed break
     for RFC's sake!
 
- -- Tomas Pospisek <tpo_deb@sourcepole.ch>  Tue, 10 Nov 2020 18:23:08 +0100
+  * do not include ~/.git in tarball
+
+ -- Tomas Pospisek <tpo_deb@sourcepole.ch>  Tue, 10 Nov 2020 19:30:08 +0100
 
 mailsync (5.2.6-1) unstable; urgency=low
 

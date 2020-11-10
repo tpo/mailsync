@@ -21,6 +21,7 @@ class MsgId : public string
     MsgId( string          m ): string(m) {};
     MsgId( ENVELOPE* envelope);
 
+    void    fix_unfolded_msg_id ();
     void    sanitize_message_id ();
     string  to_msinfo_format    ();
     string  from_msinfo_format  ();

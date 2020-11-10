@@ -66,6 +66,7 @@ MsgId::MsgId(ENVELOPE *envelope)
           *this = envelope->message_id;
         else
           *this = "<>";         // empty message-id
+
         sanitize_message_id();
         // some software produces empty Message-IDs f.ex. for draft emails
         // which makes us unable to differentiaty between such messages
@@ -121,6 +122,28 @@ MsgId::MsgId(ENVELOPE *envelope)
 
 //////////////////////////////////////////////////////////////////////////
 //
+void MsgId::fix_unfolded_msg_id()
+//
+// As documented in tests/scenario_sync_message_id_with_newline/dir_with_mails_a/mailbox
+// it seems like some of Microsofts emails processing software likes to
+// [fold](https://tools.ietf.org/html/rfc822#section-3.1.1) Message-ID
+// headers by using LF (linefeed aka 0x0a) only.
+//
+// For whatever reason c-client will remove the leading 0x0a but will keep
+// the following 0x20 (space) and the next line.
+//
+// Remove that leading space too.
+//
+//////////////////////////////////////////////////////////////////////////
+{
+  if ( this->length() > 1
+       && (*this)[0] == ' '
+       && (*this)[1] == '<')
+    (*this).erase( 0, 1 );
+}
+
+//////////////////////////////////////////////////////////////////////////
+//
 void MsgId::sanitize_message_id()
 //
 // Some mail software goes out of its way to produce braindammaged
@@ -138,6 +161,8 @@ void MsgId::sanitize_message_id()
 //
 //////////////////////////////////////////////////////////////////////////
 {
+  fix_unfolded_msg_id();
+
   int removed_blanks = 0;
   int added_brackets = 0;
   unsigned i;
@@ -145,6 +170,8 @@ void MsgId::sanitize_message_id()
     *this = '<'+ *this;
     added_brackets = 1;
   }
+
+  // replace blanks with dots
   for (i=0; (i < this->length()) && ((*this)[i] != '>'); i++) {
     if (isspace((*this)[i]) || iscntrl((*this)[i])) {
       (*this)[i] = '.';

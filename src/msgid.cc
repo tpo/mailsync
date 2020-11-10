@@ -134,6 +134,9 @@ void MsgId::fix_unfolded_msg_id()
 //
 // Remove that leading space too.
 //
+// TODO: research whether this behavior is a c-client bug and maybe fixed
+// in the alpine code.
+//
 //////////////////////////////////////////////////////////////////////////
 {
   if ( this->length() > 1

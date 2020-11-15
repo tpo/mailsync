@@ -1,3 +1,11 @@
+mailsync (5.2.7-3) unstable; urgency=low
+
+  * Update aclocal.m4 during build. Hopefully this should make
+    debian/rules work with future automake releases. Thanks
+    Adrian Bunk for reporting! (Closes: #974578)
+
+ -- Tomas Pospisek <tpo_deb@sourcepole.ch>  Sun, 15 Nov 2020 19:55:25 +0100
+
 mailsync (5.2.7-2) unstable; urgency=low
 
   * support syncing mails from Microsoft's mail software that

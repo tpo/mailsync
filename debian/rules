@@ -14,6 +14,10 @@ export LIBDIRS := /lib/$(DEB_HOST_MULTIARCH)
 configure: configure-stamp
 configure-stamp:
 	dh_testdir
+	@# recreate among others aclocal.m4 which needs to be done
+	@# on automake upgrades. We do this here in the hopes to
+	@# stay compatible with future automake releases.
+	autoreconf -fi
 	@# link `depcomp`, `install-sh` and `missing` that we need in
 	@# order to be able to build. `automake -a` is supported since
 	@# automake 1.5

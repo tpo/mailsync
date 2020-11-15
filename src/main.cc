@@ -139,7 +139,7 @@ int main(const int argc, const char** argv)
     if ( store_b.open_read_only_connection() == FAILED )
       exit(1);
 
-      store_b.acquire_mailboxes_and_delimiter( debug );
+    store_b.acquire_mailboxes_and_delimiter( debug );
 
     if (debug)
       channel.list_mailboxes(); // Display all the mailboxes we've found
